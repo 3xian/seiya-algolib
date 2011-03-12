@@ -1,16 +1,13 @@
-﻿#include <vector>
-#include <cstdlib>
-#include <iostream>
+#include <vector>
 #include <iomanip>
-#include <string>
-#include <ctime>
+#include <iostream>
 using namespace std;
 
-// base and base_digits must be consistent
 const int base = 1000000000;
 const int base_digits = 9;
 
-struct bigint {
+struct bigint
+{
     vector<int> a;
     int sign;
 
@@ -43,7 +40,9 @@ struct bigint {
         if (sign == v.sign) {
             bigint res = v;
 
-            for (int i = 0, carry = 0; i < (int) max(a.size(), v.a.size()) || carry; ++i) {
+            for (int i = 0, carry = 0; i < (int) max(a.size(), v.a.size()) || 
+
+carry; ++i) {
                 if (i == (int) res.a.size())
                     res.a.push_back(0);
                 res.a[i] += carry + (i < (int) a.size() ? a[i] : 0);
@@ -265,7 +264,9 @@ struct bigint {
         return stream;
     }
 
-    static vector<int> convert_base(const vector<int> &a, int old_digits, int new_digits) {
+    static vector<int> convert_base(const vector<int> &a, int old_digits, int 
+
+new_digits) {
         vector<long long> p(max(old_digits, new_digits) + 1);
         p[0] = 1;
         for (int i = 1; i < (int) p.size(); i++)
@@ -367,8 +368,6 @@ int main() {
         sb += i % 10 + '0';
     a = bigint(sa);
     b = bigint(sb);
-
-    clock_t start = clock();
     bigint c = a / b;
-    fprintf(stderr, "time=%.3lfsec\n", 0.001 * (clock() - start));
+	return 0;
 }
