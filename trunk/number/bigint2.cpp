@@ -40,9 +40,7 @@ struct bigint
         if (sign == v.sign) {
             bigint res = v;
 
-            for (int i = 0, carry = 0; i < (int) max(a.size(), v.a.size()) || 
-
-carry; ++i) {
+            for (int i = 0, carry = 0; i < (int) max(a.size(), v.a.size()) || carry; ++i) {
                 if (i == (int) res.a.size())
                     res.a.push_back(0);
                 res.a[i] += carry + (i < (int) a.size() ? a[i] : 0);
@@ -264,9 +262,7 @@ carry; ++i) {
         return stream;
     }
 
-    static vector<int> convert_base(const vector<int> &a, int old_digits, int 
-
-new_digits) {
+    static vector<int> convert_base(const vector<int> &a, int old_digits, int new_digits) {
         vector<long long> p(max(old_digits, new_digits) + 1);
         p[0] = 1;
         for (int i = 1; i < (int) p.size(); i++)
