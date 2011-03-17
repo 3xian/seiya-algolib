@@ -57,9 +57,9 @@ namespace york
 #ifdef __GNUC__
 		return __builtin_ffs(x);
 #else
-		int p = 0;
+		int p = 1;
 		while (x & 1 ^ 1) x >>= 1, p++;
-		return p + 1;
+		return p;
 #endif
 	}
 	
