@@ -15,16 +15,17 @@
 #include <sstream>
 #include <string>
 #include <vector>
+
 #define all(x)		(x).begin(),(x).end()
 #define db(x)		cout<<"["#x"="<<x<<"]\n"
 #define each(i,x)	for(typeof((x).begin()) i=(x).begin();i!=(x).end();++i)
 #define loop(i,n)	for(int i=0;i<(n);++i)
 #define mp(a,b)		make_pair((a),(b))
 #define sz(x)		((int)(x).size())
+
 using namespace std;
 
-namespace york
-{
+namespace york {
 	typedef long long llong;
 	typedef pair<int, int> ii_t;
 	typedef pair<int, double> id_t;
@@ -63,17 +64,14 @@ namespace york
 #endif
 	}
 	
-	void run()
-	{
+	void run() {
 	}
 }
 
-int main()
-{
+int main() {
 	ios_base::sync_with_stdio(false);
 #ifndef ONLINE_JUDGE
-	if (freopen("1.in", "r", stdin) == NULL)
-	{
+	if (freopen("1.in", "r", stdin) == NULL) {
 		cout << "No input file!\n";
 		return 0;
 	}
