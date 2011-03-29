@@ -5,6 +5,7 @@
 #include <cstring>
 #include <algorithm>
 #include <bitset>
+#include <complex>
 #include <deque>
 #include <iostream>
 #include <list>
@@ -45,25 +46,11 @@ namespace york {
 	template<typename T> T gcd(T a, T b) { while (b) { T t = a % b; a = b; b = t; } return a; }
 	llong cross(const ii_t& a, const ii_t& b) { return (llong)a.first * b.second - (llong)b.first * a.second; }
 	llong dot(const ii_t& a, const ii_t& b) { return (llong)a.first * b.first + (llong)a.second * b.second; }
-	int bitcnt(unsigned x) {
 #ifdef __GNUC__
-		return __builtin_popcount(x);
-#else
-		int c = 0;
-		while (x) x &= x - 1, c++;
-		return c;
+	int bitcnt(unsigned x) { return __builtin_popcount(x); }
+	int bitlow(unsigned x) { return __builtin_ffs(x); }
 #endif
-	}
-	int bitlow(unsigned x) {
-#ifdef __GNUC__
-		return __builtin_ffs(x);
-#else
-		int p = 1;
-		while (x & 1 ^ 1) x >>= 1, p++;
-		return p;
-#endif
-	}
-	
+
 	void run() {
 	}
 }
