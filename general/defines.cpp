@@ -20,9 +20,10 @@
 #define all(x)		(x).begin(),(x).end()
 #define each(i,x)	for(typeof((x).begin()) i=(x).begin();i!=(x).end();++i)
 #define loop(i,n)	for(int i=0;i<(n);++i)
-#define mp(a,b)		make_pair((a),(b))
 #define say(x)		cout<<"["#x"="<<x<<"]\n"
 #define sz(x)		((int)(x).size())
+#define pv(i,n)		((i)>0?(i)-1:(n)-1)
+#define nx(i,n)		((i)+1<(n)?(i)+1:0)
 
 using namespace std;
 
