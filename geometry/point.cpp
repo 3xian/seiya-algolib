@@ -2,7 +2,8 @@ const double AES = 1e-10;
 const double EPS = 1e-7;
 const double PI = acos(-1.0);
 
-struct point_t {
+struct point_t
+{
 	double x, y;
 	point_t() {}
 	point_t(const double& x, const double& y) : x(x), y(y) {}
