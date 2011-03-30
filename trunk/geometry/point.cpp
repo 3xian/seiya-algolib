@@ -12,7 +12,7 @@ struct point_t
 		return x + EPS < a.x || x < a.x + EPS && y + EPS < a.y;
 	}
 	bool operator == (const point_t& a) const {
-		return !((*this) < a) && !(a < (*this));
+		return !(*this < a || a < *this);
 	}
 	point_t operator + (const point_t& a) const {
 		return point_t(x + a.x, y + a.y);
