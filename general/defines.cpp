@@ -17,11 +17,12 @@
 #include <string>
 #include <vector>
 
-#define all(x)		(x).begin(),(x).end()
-#define each(i,x)	for(typeof((x).begin()) i=(x).begin();i!=(x).end();++i)
-#define loop(i,n)	for(int i=0;i<(n);++i)
 #define say(x)		cout<<"["#x"="<<x<<"]\n"
+#define all(x)		(x).begin(),(x).end()
+#define loop(i,n)	for(int i=0;i<(n);++i)
 #define sz(x)		((int)(x).size())
+#define itr(x)		typeof((x).begin())
+#define each(i,x)	for(itr(x) i=(x).begin();i!=(x).end();++i)
 #define pv(i,n)		((i)>0?(i)-1:(n)-1)
 #define nx(i,n)		((i)+1<(n)?(i)+1:0)
 
@@ -47,10 +48,8 @@ template<typename T> int index(const vector<T>& a, const T& x){ return lower_bou
 template<typename T> T gcd(T a, T b) { while (b) { T t = a % b; a = b; b = t; } return a; }
 llong cross(const ii_t& a, const ii_t& b) { return (llong)a.first * b.second - (llong)b.first * a.second; }
 llong dot(const ii_t& a, const ii_t& b) { return (llong)a.first * b.first + (llong)a.second * b.second; }
-#ifdef __GNUC__
 int bitcnt(unsigned x) { return __builtin_popcount(x); }
 int bitlow(unsigned x) { return __builtin_ffs(x); }
-#endif
 
 void run() {
 }
