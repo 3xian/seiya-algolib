@@ -16,6 +16,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <ext/hash_map>
 
 #define say(x)		cout<<"["#x"="<<x<<"]\n"
 #define all(x)		(x).begin(),(x).end()
@@ -27,6 +28,7 @@
 #define nx(i,n)		((i)+1<(n)?(i)+1:0)
 
 using namespace std;
+using namespace __gnu_cxx;
 
 typedef long long llong;
 typedef pair<int, int> ii_t;
