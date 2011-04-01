@@ -28,7 +28,6 @@
 
 using namespace std;
 
-namespace york {
 typedef long long llong;
 typedef pair<int, int> ii_t;
 typedef pair<int, double> id_t;
@@ -54,8 +53,6 @@ int bitlow(unsigned x) { return __builtin_ffs(x); }
 void run() {
 }
 
-} // namespace york
-
 int main() {
 	ios_base::sync_with_stdio(false);
 #ifndef ONLINE_JUDGE
@@ -65,7 +62,7 @@ int main() {
 	}
 	int ck = clock();
 #endif
-	york::run();
+	run();
 #ifndef ONLINE_JUDGE
 	cout << "\n=====\nUsed: " << clock() - ck << " ms\n";
 #endif
