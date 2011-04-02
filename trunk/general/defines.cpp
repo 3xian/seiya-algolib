@@ -52,7 +52,7 @@ llong dot(const ii_t& a, const ii_t& b) { return (llong)a.first * b.first + (llo
 int bitcnt(unsigned x) { return __builtin_popcount(x); }
 int bitlow(unsigned x) { return __builtin_ffs(x); }
 
-void run() {
+void york_hotel() {
 }
 
 int main() {
@@ -64,7 +64,7 @@ int main() {
 	}
 	int ck = clock();
 #endif
-	run();
+	york_hotel();
 #ifndef ONLINE_JUDGE
 	cout << "\n=====\nUsed: " << clock() - ck << " ms\n";
 #endif
