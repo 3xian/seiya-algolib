@@ -58,10 +58,8 @@ void york_hotel() {
 int main() {
 	ios_base::sync_with_stdio(false);
 #ifndef ONLINE_JUDGE
-	if (freopen("1.in", "r", stdin) == NULL) {
-		cout << "No input file!\n";
-		return 0;
-	}
+	freopen("1.in", "r", stdin);
+	freopen("1.out", "w", stdout);
 	int ck = clock();
 #endif
 	york_hotel();
