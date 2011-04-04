@@ -1,9 +1,19 @@
-class convex_t
-{
-	set<point_t> p;
+/*
+  Name: convex_hull_online.cpp
+  Copyright: 
+  Author: seiya
+  Date: 04/04/11 12:19
+  Description:
+		在线求凸包，维护上下两个单调链。
+		可O(logn)查询一个点是否在凸包内部（此版本包括在边上）。 
+*/
+
+class Convex {
 public:
-	void clear() { p.clear(); }
-	void insert(const point_t& q) {
+	void clear() {
+		p.clear();
+	}
+	void insert(const Point& q) {
 		if (cover(q)) return;
 		itr(p) pq = p.insert(q).first;
 		itr(p) pa = pq;
@@ -27,29 +37,31 @@ public:
 			pa = pb;
 		}
 	}
-	bool cover(const point_t& q) const {
+	bool cover(const Point& q) const {
 		itr(p) pr = p.lower_bound(q);
 		if (pr == p.end()) return false;
 		if (pr == p.begin()) return sgn(pr->x - q.x) == 0;
 		itr(p) pl = pr; --pl;
 		return sgn(cross(*pl - *pr, q - *pr)) >= 0;
 	}
+private:
+	set<Point> p;
 };
 
-class hull_t
-{
-	convex_t uh;
-	convex_t lh;
+class Hull {
 public:
 	void clear() {
 		uh.clear();
 		lh.clear();
 	}
-	void insert(const point_t& p) {
+	void insert(const Point& p) {
 		uh.insert(p);
-		lh.insert(point_t(p.x, -p.y));
+		lh.insert(Point(p.x, -p.y));
 	}
-	bool is_contain(const point_t& p) const {
-		return uh.cover(p) && lh.cover(point_t(p.x, -p.y));
+	bool is_contain(const Point& p) const {
+		return uh.cover(p) && lh.cover(Point(p.x, -p.y));
 	}
+private:
+	Convex uh;
+	Convex lh;
 };

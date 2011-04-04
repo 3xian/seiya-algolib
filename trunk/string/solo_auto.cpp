@@ -1,7 +1,6 @@
 int trans[N + 1][C];
 int pf[N + 1];
-void solo_auto(const string& s)
-{
+void solo_auto(const string& s) {
 	memset(trans, -1, sizeof(int) * (s.length() + 1) * C);
 	for (int j = 0; j < C; j++) {
 		trans[0][j] = 0;

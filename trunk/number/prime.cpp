@@ -1,7 +1,6 @@
 bool mk[N + 1];
 int pr[N + 1];
-int prime(int n)
-{
+int prime(int n) {
 //	memset(mk, 0, sizeof mk);
 	if (n < 0) return 0;
 	mk[0] = true; if (n == 0) return 0;
