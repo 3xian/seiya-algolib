@@ -1,21 +1,28 @@
-struct BigInteger
-{
-	static const int CPS = 1000000000;
-	vector<int> d;
-	
+/*
+  Name: bigint1.cpp
+  Copyright: 
+  Author: seiya
+  Date: 04/04/11 12:33
+  Description:
+		大数类。CPS暂不可调。 
+*/
+
+class BigInteger {
+public:
 	BigInteger(llong x = 0) {
 		while (x) d.push_back(x % CPS), x /= CPS;
 	}
 	BigInteger(const char* s) {
 		for (int i = strlen(s) - 1, e = CPS; i >= 0; i--)
 			e == CPS ? (d.push_back(s[i] - '0'), e = 10)
-					 : (d.back() += (s[i] - '0') * e, e *= 10);
-		fix();
+				: (d.back() += (s[i] - '0') * e, e *= 10);
+		trim();
 	}
+
 	int size() const {
 		return d.size();
 	}
-	void fix() {
+	void trim() {
 		while (size() > 0 && d.back() == 0) d.pop_back();
 	}
 	bool operator < (const BigInteger & r) const {
@@ -42,7 +49,7 @@ struct BigInteger
 		BigInteger o(*this);
 		for (int i = 0; i < r.size(); i++) o.d[i] -= r.d[i];
 		for (int i = 0; i < size(); i++) if (o.d[i] < 0) o.d[i] += CPS, --o.d[i + 1];
-		o.fix();
+		o.trim();
 		return o;
 	}
 	BigInteger operator * (const BigInteger& r) const {
@@ -56,7 +63,7 @@ struct BigInteger
 				o.d[i + j] = t % CPS;
 			}
 		}
-		o.fix();
+		o.trim();
 		return o;
 	}
 	BigInteger operator / (int r) const {
@@ -64,7 +71,7 @@ struct BigInteger
 		llong t = 0;
 		for (int i = size() - 1; i >= 0; i--)
 			t = t * CPS + d[i], c.d[i] = t / r, t %= r;
-		c.fix();
+		c.trim();
 		return c;
 	}
 	int operator % (int r) const {
@@ -73,4 +80,8 @@ struct BigInteger
 			t = (t * CPS + d[i]) % r;
 		return t;
 	}
+
+private:
+	static const int CPS = 1000000000;
+	vector<int> d;
 };
