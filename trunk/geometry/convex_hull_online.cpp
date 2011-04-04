@@ -5,7 +5,8 @@
   Date: 04/04/11 12:19
   Description:
 		在线求凸包，维护上下两个单调链。
-		可O(logn)查询一个点是否在凸包内部（此版本包括在边上）。 
+		注意两条链的左右两侧可能会存在公共点。 
+		可O(logn)查询一个点是否在凸包内部（此版本包括在边上）。
 */
 
 class Convex {
@@ -44,6 +45,7 @@ public:
 		itr(p) pl = pr; --pl;
 		return sgn(cross(*pl - *pr, q - *pr)) >= 0;
 	}
+
 private:
 	set<Point> p;
 };
@@ -61,6 +63,7 @@ public:
 	bool is_contain(const Point& p) const {
 		return uh.cover(p) && lh.cover(Point(p.x, -p.y));
 	}
+
 private:
 	Convex uh;
 	Convex lh;
