@@ -21,7 +21,6 @@
 
 #define say(x)		cout<<"["#x"="<<x<<"]\n"
 #define all(x)		(x).begin(),(x).end()
-#define loop(i,n)	for(int i=0;i<(n);++i)
 #define sz(x)		((int)(x).size())
 #define itr(x)		typeof((x).begin())
 #define each(i,x)	for(itr(x) i=(x).begin();i!=(x).end();++i)
