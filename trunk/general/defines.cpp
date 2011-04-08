@@ -33,9 +33,6 @@ using namespace __gnu_cxx;
 
 typedef long long Int64;
 typedef pair<int, int> IntInt;
-typedef pair<int, double> IntDouble;
-typedef pair<int, string> IntString;
-typedef pair<double, double> DoubleDouble;
 template<typename T> T sq(const T& x) { return x * x; }
 template<typename T> void minl(T& a, const T& b) { if (a > b) a = b; }
 template<typename T> void maxl(T& a, const T& b) { if (a < b) a = b; }
