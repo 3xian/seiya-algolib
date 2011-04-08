@@ -4,32 +4,31 @@ const double PI = acos(-1.0);
 
 class Point {
 public:
-	double x, y;
-
 	Point() {
 	}
-	Point(const double& x, const double& y) : x(x), y(y) {
+	Point(const double& x, const double& y) :
+		x(x), y(y) {
 	}
 	template<typename T>
-	Point(const pair<T, T>& a) : x(a.first), y(a.second) {
+	Point(const pair<T, T>& a) :
+		x(a.first), y(a.second) {
 	}
-
-	bool operator < (const Point& a) const {
+	bool operator <(const Point& a) const {
 		return x + EPS < a.x || x < a.x + EPS && y + EPS < a.y;
 	}
-	bool operator == (const Point& a) const {
+	bool operator ==(const Point& a) const {
 		return !(*this < a || a < *this);
 	}
-	Point operator + (const Point& a) const {
+	Point operator +(const Point& a) const {
 		return Point(x + a.x, y + a.y);
 	}
-	Point operator - (const Point& a) const {
+	Point operator -(const Point& a) const {
 		return Point(x - a.x, y - a.y);
 	}
-	Point operator * (const double& k) const {
+	Point operator *(const double& k) const {
 		return Point(x * k, y * k);
 	}
-	Point operator / (const double& k) const {
+	Point operator /(const double& k) const {
 		return Point(x / k, y / k);
 	}
 	double norm() const {
@@ -39,7 +38,7 @@ public:
 		return sqrt(norm());
 	}
 	Point scale(const double& k) const {
-		return  (*this) * (k / len());
+		return (*this) * (k / len());
 	}
 	Point turn_left() {
 		return Point(-y, x);
@@ -47,6 +46,8 @@ public:
 	Point turn_right() {
 		return Point(y, -x);
 	}
+
+	double x, y;
 };
 int sgn(const double& x) {
 	return x < -EPS ? -1 : x > EPS;
