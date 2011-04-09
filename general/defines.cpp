@@ -20,7 +20,6 @@
 #include <ext/hash_map>
 
 #define say(x)		cout<<"["#x"="<<x<<"]\n"
-#define all(x)		(x).begin(),(x).end()
 #define sz(x)		((int)(x).size())
 #define itr(x)		typeof((x).begin())
 #define each(i,x)	for(itr(x) i=(x).begin();i!=(x).end();++i)
@@ -32,22 +31,63 @@ using namespace __gnu_cxx;
 
 typedef long long Int64;
 typedef pair<int, int> IntInt;
-template<typename T> T sq(const T& x) { return x * x; }
-template<typename T> void minl(T& a, const T& b) { if (a > b) a = b; }
-template<typename T> void maxl(T& a, const T& b) { if (a < b) a = b; }
-template<typename T> void operator += (vector<T>& a, const T& x) { a.push_back(x); }
-template<typename T> void operator += (set<T>& a, const T& x) { a.insert(x); }
-template<typename T> bool operator & (const set<T>& a,const T& x) { return a.find(x) != a.end(); }
-template<typename A, typename B> istream& operator >> (istream& i, pair<A, B>& v) { return i >> v.first >> v.second; }
-IntInt operator + (const IntInt& a,const IntInt& b) { return IntInt(a.first + b.first, a.second + b.second); }
-IntInt operator - (const IntInt& a,const IntInt& b) { return IntInt(a.first - b.first, a.second - b.second); }
-template<typename T> void usort(vector<T>& a) { sort(all(a)); a.erase(unique(all(a)), a.end()); }
-template<typename T> int index(const vector<T>& a, const T& x){ return lower_bound(all(a), x) - a.begin(); }
-template<typename T> T gcd(T a, T b) { while (b) { T t = a % b; a = b; b = t; } return a; }
-Int64 cross(const IntInt& a, const IntInt& b) { return (Int64)a.first * b.second - (Int64)b.first * a.second; }
-Int64 dot(const IntInt& a, const IntInt& b) { return (Int64)a.first * b.first + (Int64)a.second * b.second; }
-int bitcnt(unsigned x) { return __builtin_popcount(x); }
-int bitlow(unsigned x) { return __builtin_ffs(x); }
+
+template<typename T> T sq(const T& x) {
+	return x * x;
+}
+template<typename T> void minl(T& a, const T& b) {
+	if (a > b)
+		a = b;
+}
+template<typename T> void maxl(T& a, const T& b) {
+	if (a < b)
+		a = b;
+}
+template<typename T> void operator +=(vector<T>& a, const T& x) {
+	a.push_back(x);
+}
+template<typename T> void operator +=(set<T>& a, const T& x) {
+	a.insert(x);
+}
+template<typename T> bool operator &(const set<T>& a, const T& x) {
+	return a.find(x) != a.end();
+}
+template<typename A, typename B> istream& operator >>(istream& i, pair<A, B>& v) {
+	return i >> v.first >> v.second;
+}
+IntInt operator +(const IntInt& a, const IntInt& b) {
+	return IntInt(a.first + b.first, a.second + b.second);
+}
+IntInt operator -(const IntInt& a, const IntInt& b) {
+	return IntInt(a.first - b.first, a.second - b.second);
+}
+template<typename T> void usort(vector<T>& a) {
+	sort(a.begin(), a.end());
+	a.erase(unique(a.begin(), a.end()), a.end());
+}
+template<typename T> int index(const vector<T>& a, const T& x) {
+	return lower_bound(a.begin(), a.end(), x) - a.begin();
+}
+template<typename T> T gcd(T a, T b) {
+	while (b) {
+		T t = a % b;
+		a = b;
+		b = t;
+	}
+	return a;
+}
+Int64 cross(const IntInt& a, const IntInt& b) {
+	return (Int64) a.first * b.second - (Int64) b.first * a.second;
+}
+Int64 dot(const IntInt& a, const IntInt& b) {
+	return (Int64) a.first * b.first + (Int64) a.second * b.second;
+}
+int bitcnt(unsigned x) {
+	return __builtin_popcount(x);
+}
+int bitlow(unsigned x) {
+	return __builtin_ffs(x);
+}
 
 void york() {
 }
