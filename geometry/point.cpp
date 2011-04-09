@@ -65,7 +65,10 @@ double cross(const Point& a, const Point& b) {
 double dot(const Point& a, const Point& b) {
 	return a.x * b.x + a.y * b.y;
 }
-// ang(b)-ang(a) (-PI,PI]
+/*
+ * arc(b)-arc(a)
+ * (-PI,PI]
+ */
 double arc(const Point& a, const Point& b) {
 	double c = cross(a, b);
 	double t = atan2(fabs(c), dot(a, b));

@@ -1,4 +1,6 @@
-// 直线交点
+/*
+ * 直线交点
+ */
 bool intersect(const Point& a, const Point& b, const Point& c, const Point& d,
 		Point& x) {
 	double s1 = cross(b - a, c - a);
@@ -10,8 +12,11 @@ bool intersect(const Point& a, const Point& b, const Point& c, const Point& d,
 		return true;
 	}
 }
-// 中垂线
-// q1为p1p2中点, q2在向量p1p2左边
+
+/*
+ * 中垂线
+ * q1为p1p2中点, q2在向量p1p2左边
+ */
 void perpendicular_bisector(const Point& p1, const Point& p2, Point &q1,
 		Point &q2) {
 	q1 = (p1 + p2) / 2;

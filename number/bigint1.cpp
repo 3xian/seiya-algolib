@@ -1,5 +1,7 @@
-// 大数类
-// CPS暂不可调
+/*
+ * 大数类
+ * CPS暂不可调
+ */
 
 class BigInteger {
 public:
