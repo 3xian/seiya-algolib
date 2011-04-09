@@ -8,7 +8,9 @@ public:
 	double area() const {
 		return fabs(cross(a - c, b - c)) / 2;
 	}
-	// 外心
+	/*
+	 * 外心
+	 */
 	Point circumcenter() {
 		Point p[5];
 		perpendicular_bisector(a, b, p[0], p[1]);
@@ -16,7 +18,9 @@ public:
 		intersect(p[0], p[1], p[2], p[3], p[4]);
 		return p[4];
 	}
-	// 内心
+	/*
+	 * 内心
+	 */
 	Point incenter() {
 		Point u1 = a, u2, v1 = b, v2, x;
 		double t1 = (atan2(b.y - a.y, b.x - a.x) + atan2(c.y - a.y, c.x - a.x))
@@ -28,7 +32,9 @@ public:
 		intersect(u1, u2, v1, v2, x);
 		return x;
 	}
-	// 垂心
+	/*
+	 * 垂心
+	 */
 	Point orthocenter() {
 		Point u(c.x - a.y + b.y, c.y + a.x - b.x);
 		Point v(b.x - a.y + c.y, b.y + a.x - c.x);
@@ -36,9 +42,11 @@ public:
 		intersect(c, u, b, v, x);
 		return x;
 	}
-	// 重心
-	// 1) 到三个顶点距离的平方和最小
-	// 2) 到三边距离之积最大
+	/*
+	 * 重心
+	 * 1) 到三个顶点距离的平方和最小
+	 * 2) 到三边距离之积最大
+	 */
 	Point centroid() {
 		return (a + b + c) / 3.0;
 	}
@@ -47,4 +55,3 @@ public:
 	Point b;
 	Point c;
 };
-

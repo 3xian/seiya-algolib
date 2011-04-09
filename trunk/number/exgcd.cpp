@@ -1,4 +1,6 @@
-// x,y分别表示a模b的逆元和b模a的逆元
+/*
+ * x,y分别表示a模b的逆元和b模a的逆元
+ */
 template<typename T>
 T gcd(const T& a, const T& b, T& x, T& y) {
 	if (b == 0) {
@@ -11,7 +13,9 @@ T gcd(const T& a, const T& b, T& x, T& y) {
 	return d;
 }
 
-// ax + by = c
+/*
+ * ax + by = c
+ */
 bool linear_equation(llong a, llong b, llong c, llong& x, llong& y) {
 	llong n = gcd(a, b, x, y);
 	if (c % n != 0) {

@@ -1,4 +1,7 @@
-// 分数类
+/*
+ * 分数类
+ * 自动约分
+ */
 
 template<typename T>
 class Fraction {
@@ -52,5 +55,6 @@ public:
 		return os;
 	}
 
-	T a, b;
+	T a;
+	T b;
 };

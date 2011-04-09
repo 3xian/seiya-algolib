@@ -1,3 +1,6 @@
+/*
+ * Ç°×ºº¯Êý
+ */
 vector<int> pref(const string& s) {
 	vector<int> pf(s.length());
 	if (s.length() > 0) {
