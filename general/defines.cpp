@@ -95,7 +95,7 @@ void york() {
 int main() {
 	ios_base::sync_with_stdio(false);
 #ifndef ONLINE_JUDGE
-	freopen("1.in", "r", stdin);
+	freopen("1.txt", "r", stdin);
 	int ck = clock();
 #endif
 	york();

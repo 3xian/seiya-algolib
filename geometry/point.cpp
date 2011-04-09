@@ -46,9 +46,16 @@ public:
 	Point turn_right() {
 		return Point(y, -x);
 	}
+	Point rotate(const double& arc) {
+		double co = cos(arc);
+		double si = sin(arc);
+		return Point(x * co - y * si, x * si + y * co);
+	}
 
-	double x, y;
+	double x;
+	double y;
 };
+
 int sgn(const double& x) {
 	return x < -EPS ? -1 : x > EPS;
 }
@@ -57,4 +64,10 @@ double cross(const Point& a, const Point& b) {
 }
 double dot(const Point& a, const Point& b) {
 	return a.x * b.x + a.y * b.y;
+}
+// ang(b)-ang(a) (-PI,PI]
+double arc(const Point& a, const Point& b) {
+	double c = cross(a, b);
+	double t = atan2(fabs(c), dot(a, b));
+	return c >= 0.0 ? t : -t;
 }
