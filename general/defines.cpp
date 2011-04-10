@@ -78,10 +78,10 @@ Int64 cross(const IntInt& a, const IntInt& b) {
 Int64 dot(const IntInt& a, const IntInt& b) {
 	return (Int64) a.first * b.first + (Int64) a.second * b.second;
 }
-int bitcnt(unsigned x) {
+int count_bit(unsigned x) {
 	return __builtin_popcount(x);
 }
-int bitlow(unsigned x) {
+int first_bit(unsigned x) {
 	return __builtin_ffs(x);
 }
 
