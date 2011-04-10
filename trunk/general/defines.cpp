@@ -28,7 +28,7 @@
 using namespace std;
 using namespace __gnu_cxx;
 
-typedef long long Int64;
+typedef long long LL;
 typedef pair<int, int> IntInt;
 
 template<typename T> T sq(const T& x) {
@@ -72,11 +72,11 @@ template<typename T> T gcd(T a, T b) {
 	}
 	return a;
 }
-Int64 cross(const IntInt& a, const IntInt& b) {
-	return (Int64) a.first * b.second - (Int64) b.first * a.second;
+LL cross(const IntInt& a, const IntInt& b) {
+	return (LL) a.first * b.second - (LL) b.first * a.second;
 }
-Int64 dot(const IntInt& a, const IntInt& b) {
-	return (Int64) a.first * b.first + (Int64) a.second * b.second;
+LL dot(const IntInt& a, const IntInt& b) {
+	return (LL) a.first * b.first + (LL) a.second * b.second;
 }
 int count_bit(unsigned x) {
 	return __builtin_popcount(x);
