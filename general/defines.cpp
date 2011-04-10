@@ -5,7 +5,6 @@
 #include <cstring>
 #include <algorithm>
 #include <bitset>
-#include <complex>
 #include <deque>
 #include <iostream>
 #include <iterator>
@@ -45,9 +44,6 @@ template<typename T> void maxl(T& a, const T& b) {
 }
 template<typename T> void operator +=(vector<T>& a, const T& x) {
 	a.push_back(x);
-}
-template<typename T> void operator +=(set<T>& a, const T& x) {
-	a.insert(x);
 }
 template<typename T> bool operator &(const set<T>& a, const T& x) {
 	return a.find(x) != a.end();
