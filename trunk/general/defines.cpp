@@ -29,7 +29,7 @@ using namespace std;
 using namespace __gnu_cxx;
 
 typedef long long LL;
-typedef pair<int, int> IntInt;
+typedef pair<int, int> PII;
 
 template<typename T> T sq(const T& x) {
 	return x * x;
@@ -51,11 +51,11 @@ template<typename T> bool operator &(const set<T>& a, const T& x) {
 template<typename A, typename B> istream& operator >>(istream& i, pair<A, B>& v) {
 	return i >> v.first >> v.second;
 }
-IntInt operator +(const IntInt& a, const IntInt& b) {
-	return IntInt(a.first + b.first, a.second + b.second);
+PII operator +(const PII& a, const PII& b) {
+	return PII(a.first + b.first, a.second + b.second);
 }
-IntInt operator -(const IntInt& a, const IntInt& b) {
-	return IntInt(a.first - b.first, a.second - b.second);
+PII operator -(const PII& a, const PII& b) {
+	return PII(a.first - b.first, a.second - b.second);
 }
 template<typename T> void usort(vector<T>& a) {
 	sort(a.begin(), a.end());
@@ -72,10 +72,10 @@ template<typename T> T gcd(T a, T b) {
 	}
 	return a;
 }
-LL cross(const IntInt& a, const IntInt& b) {
+LL cross(const PII& a, const PII& b) {
 	return (LL) a.first * b.second - (LL) b.first * a.second;
 }
-LL dot(const IntInt& a, const IntInt& b) {
+LL dot(const PII& a, const PII& b) {
 	return (LL) a.first * b.first + (LL) a.second * b.second;
 }
 int count_bit(unsigned x) {
