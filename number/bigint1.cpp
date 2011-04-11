@@ -14,7 +14,7 @@ public:
 		}
 	}
 	BigInteger(const char* s) {
-		for (int i = strlen(s) - 1, e = CPS; i >= 0; i--) {
+		for (int i = strlen(s) - 1, e = CPS; i >= 0; --i) {
 			if (e == CPS) {
 				d.push_back(s[i] - '0');
 				e = 10;
@@ -27,11 +27,6 @@ public:
 	}
 	int size() const {
 		return d.size();
-	}
-	void trim() {
-		while (size() > 0 && d.back() == 0) {
-			d.pop_back();
-		}
 	}
 	bool operator <(const BigInteger& r) const {
 		if (size() != r.size()) {
@@ -121,6 +116,12 @@ public:
 	}
 
 private:
+	void trim() {
+		while (!d.empty() && d.back() == 0) {
+			d.pop_back();
+		}
+	}
+
 	static const int CPS = 1000000000;
 	vector<int> d;
 };
