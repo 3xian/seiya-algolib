@@ -22,14 +22,11 @@
 #define say(x)		cout<<"["#x"="<<x<<"]\n"
 #define sz(x)		((int)(x).size())
 #define itr(x)		typeof((x).begin())
-#define each(i,x)	for(itr(x) i=(x).begin();i!=(x).end();++i)
 #define pv(i,n)		((i)>0?(i)-1:(n)-1)
 #define nx(i,n)		((i)+1<(n)?(i)+1:0)
 
 using namespace std;
 using namespace __gnu_cxx;
-
-typedef pair<int, int> PII;
 
 template<typename T> T sq(const T& x) { return x * x; }
 template<typename T> void minl(T& a, const T& b) { if (a > b) a = b; }
@@ -37,13 +34,13 @@ template<typename T> void maxl(T& a, const T& b) { if (a < b) a = b; }
 template<typename T> void operator +=(vector<T>& a, const T& x) { a.push_back(x); }
 template<typename T> bool operator &(const set<T>& a, const T& x) { return a.find(x) != a.end(); }
 template<typename A, typename B> istream& operator >>(istream& i, pair<A, B>& v) { return i >> v.first >> v.second; }
-PII operator +(const PII& a, const PII& b) { return PII(a.first + b.first, a.second + b.second); }
-PII operator -(const PII& a, const PII& b) { return PII(a.first - b.first, a.second - b.second); }
+pair<int, int> operator +(const pair<int, int>& a, const pair<int, int>& b) { return pair<int, int>(a.first + b.first, a.second + b.second); }
+pair<int, int> operator -(const pair<int, int>& a, const pair<int, int>& b) { return pair<int, int>(a.first - b.first, a.second - b.second); }
 template<typename T> void usort(vector<T>& a) { sort(a.begin(), a.end()); a.erase(unique(a.begin(), a.end()), a.end()); }
 template<typename T> int index(const vector<T>& a, const T& x) { return lower_bound(a.begin(), a.end(), x) - a.begin(); }
 template<typename T> T gcd(T a, T b) { while (b) { T t = a % b; a = b; b = t; } return a; }
-long long cross(const PII& a, const PII& b) { return (long long)a.first * b.second - (long long)b.first * a.second; }
-long long dot(const PII& a, const PII& b) { return (long long)a.first * b.first + (long long)a.second * b.second; }
+long long cross(const pair<int, int>& a, const pair<int, int>& b) { return (long long)a.first * b.second - (long long)b.first * a.second; }
+long long dot(const pair<int, int>& a, const pair<int, int>& b) { return (long long)a.first * b.first + (long long)a.second * b.second; }
 int count_bit(unsigned x) { return __builtin_popcount(x); }
 int first_bit(unsigned x) { return __builtin_ffs(x); }
 
