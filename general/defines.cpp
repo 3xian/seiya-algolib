@@ -51,7 +51,6 @@ int main() {
 	ios_base::sync_with_stdio(false);
 #ifndef ONLINE_JUDGE
 	freopen("1.txt", "r", stdin);
-	freopen("out.txt", "w", stdout);
 	int ck = clock();
 #endif
 	york();
@@ -60,3 +59,4 @@ int main() {
 #endif
 	return 0;
 }
+
