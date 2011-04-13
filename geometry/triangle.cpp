@@ -55,3 +55,4 @@ public:
 	Point b;
 	Point c;
 };
+

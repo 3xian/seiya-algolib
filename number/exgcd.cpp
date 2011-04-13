@@ -32,3 +32,4 @@ bool linear_equation(llong a, llong b, llong c, llong& x, llong& y) {
 
 	return true;
 }
+
