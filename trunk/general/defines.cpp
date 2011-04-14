@@ -27,22 +27,48 @@
 using namespace std;
 using namespace __gnu_cxx;
 
+int count_bit(unsigned x) { return __builtin_popcount(x); }
+int first_bit(unsigned x) { return __builtin_ffs(x); }
 template<typename T> T sq(const T& x) { return x * x; }
 template<typename T> void minl(T& a, const T& b) { if (a > b) a = b; }
 template<typename T> void maxl(T& a, const T& b) { if (a < b) a = b; }
-template<typename T> void operator +=(vector<T>& a, const T& x) { a.push_back(x); }
-template<typename T> bool operator &(const set<T>& a, const T& x) { return a.find(x) != a.end(); }
-template<typename T> void usort(vector<T>& a) { sort(a.begin(), a.end()); a.erase(unique(a.begin(), a.end()), a.end()); }
-template<typename T> int index(const vector<T>& a, const T& x) { return lower_bound(a.begin(), a.end(), x) - a.begin(); }
-template<typename T> T gcd(T a, T b) { while (b) { T t = a % b; a = b; b = t; } return a; }
-template<typename A, typename B> istream& operator >> (istream& i, pair<A, B>& v) { return i >> v.first >> v.second; }
-template<typename A, typename B> + (const pair<A, B>& a, const pair<A, B>& b) { return pair<A, B>(a.first + b.first, a.second + b.second); }
-template<typename A, typename B> - (const pair<A, B>& a, const pair<A, B>& b) { return pair<A, B>(a.first - b.first, a.second - b.second); }
-template<typename A, typename B> B trans(const A& in) { stringstream s; B out; s << in; s >> out; return out; }
-long long cross(const pair<int, int>& a, const pair<int, int>& b) { return (long long)a.first * b.second - (long long)b.first * a.second; }
-long long dot(const pair<int, int>& a, const pair<int, int>& b) { return (long long)a.first * b.first + (long long)a.second * b.second; }
-int count_bit(unsigned x) { return __builtin_popcount(x); }
-int first_bit(unsigned x) { return __builtin_ffs(x); }
+template<typename T> void operator += (vector<T>& a, const T& x) {
+	a.push_back(x);
+}
+template<typename T> bool operator & (const set<T>& a, const T& x) {
+	return a.find(x) != a.end();
+}
+template<typename T> void usort(vector<T>& a) {
+	sort(a.begin(), a.end());
+	a.erase(unique(a.begin(), a.end()), a.end());
+}
+template<typename T> int index(const vector<T>& a, const T& x) {
+	return lower_bound(a.begin(), a.end(), x) - a.begin();
+}
+template<typename T> T gcd(T a, T b) {
+	while (b) { T t = a % b; a = b; b = t; }
+	return a;
+}
+template<typename T> pair<T, T> operator + (const pair<T, T>& a, const pair<T, T>& b) {
+	return pair<T, T>(a.first + b.first, a.second + b.second);
+}
+template<typename T> pair<T, T> operator - (const pair<T, T>& a, const pair<T, T>& b) {
+	return pair<T, T>(a.first - b.first, a.second - b.second);
+}
+template<typename A, typename B> istream& operator >> (istream& i, pair<A, B>& v) {
+	return i >> v.first >> v.second;
+}
+template<typename A, typename B> B trans(const A& in) {
+	stringstream s; B out;
+	s << in; s >> out;
+	return out;
+}
+long long cross(const pair<int, int>& a, const pair<int, int>& b) {
+	return (long long)a.first * b.second - (long long)b.first * a.second;
+}
+long long dot(const pair<int, int>& a, const pair<int, int>& b) {
+	return (long long)a.first * b.first + (long long)a.second * b.second;
+}
 
 void york() {
 }
