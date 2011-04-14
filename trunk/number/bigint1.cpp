@@ -1,8 +1,7 @@
-/*
- * 大数类
- * CPS暂不可调
+/**
+ * @brief big integer class
+ *        CPS is not configurable
  */
-
 class BigInteger {
 public:
 	BigInteger() {
@@ -28,7 +27,7 @@ public:
 	int size() const {
 		return d.size();
 	}
-	bool operator <(const BigInteger& r) const {
+	bool operator < (const BigInteger& r) const {
 		if (size() != r.size()) {
 			return size() < r.size();
 		}
@@ -38,7 +37,7 @@ public:
 		}
 		return i >= 0 && d[i] < r.d[i];
 	}
-	BigInteger operator +(const BigInteger& r) const {
+	BigInteger operator + (const BigInteger& r) const {
 		BigInteger o;
 		int n = max(size(), r.size());
 		int t = 0;
@@ -54,7 +53,7 @@ public:
 		}
 		return o;
 	}
-	BigInteger operator -(const BigInteger& r) const {
+	BigInteger operator - (const BigInteger& r) const {
 		BigInteger o(*this);
 		for (size_t i = 0; i < r.size(); ++i) {
 			o.d[i] -= r.d[i];
@@ -68,7 +67,7 @@ public:
 		o.trim();
 		return o;
 	}
-	BigInteger operator *(const BigInteger& r) const {
+	BigInteger operator * (const BigInteger& r) const {
 		BigInteger o;
 		o.d.resize(size() + r.size(), 0);
 		for (int i = 0; i < size(); ++i) {
@@ -85,7 +84,7 @@ public:
 		o.trim();
 		return o;
 	}
-	BigInteger operator /(int r) const {
+	BigInteger operator / (int r) const {
 		BigInteger c(*this);
 		long long t = 0;
 		for (int i = size() - 1; i >= 0; --i) {
@@ -96,14 +95,14 @@ public:
 		c.trim();
 		return c;
 	}
-	int operator %(int r) const {
+	int operator % (int r) const {
 		long long t = 0;
 		for (int i = size() - 1; i >= 0; --i) {
 			t = (t * CPS + d[i]) % r;
 		}
 		return t;
 	}
-	friend ostream& operator <<(ostream& os, const BigInteger& r) {
+	friend ostream& operator << (ostream& os, const BigInteger& r) {
 		if (r.d.empty()) {
 			os << 0;
 		} else {
