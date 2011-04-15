@@ -32,12 +32,6 @@ int first_bit(unsigned x) { return __builtin_ffs(x); }
 template<typename T> T sq(const T& x) { return x * x; }
 template<typename T> void minl(T& a, const T& b) { if (a > b) a = b; }
 template<typename T> void maxl(T& a, const T& b) { if (a < b) a = b; }
-template<typename T> void operator += (vector<T>& a, const T& x) {
-	a.push_back(x);
-}
-template<typename T> bool operator & (const set<T>& a, const T& x) {
-	return a.find(x) != a.end();
-}
 template<typename T> void usort(vector<T>& a) {
 	sort(a.begin(), a.end());
 	a.erase(unique(a.begin(), a.end()), a.end());
@@ -59,8 +53,7 @@ template<typename A, typename B> istream& operator >> (istream& i, pair<A, B>& v
 	return i >> v.first >> v.second;
 }
 template<typename A, typename B> B trans(const A& in) {
-	stringstream s; B out;
-	s << in; s >> out;
+	stringstream s; B out; s << in; s >> out;
 	return out;
 }
 long long cross(const pair<int, int>& a, const pair<int, int>& b) {
