@@ -17,7 +17,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include <ext/hash_map>
+#include <tr1/unordered_map>
+#include <tr1/unordered_set>
 
 #define say(x)		cout<<"["#x"="<<x<<"]\n"
 #define itr(x)		typeof((x).begin())
@@ -25,7 +26,6 @@
 #define nx(i,n)		((i)+1<(n)?(i)+1:0)
 
 using namespace std;
-using namespace __gnu_cxx;
 
 int count_bit(unsigned x) { return __builtin_popcount(x); }
 int first_bit(unsigned x) { return __builtin_ffs(x); }
