@@ -124,4 +124,3 @@ private:
 	static const int CPS = 1000000000;
 	vector<int> d;
 };
-

@@ -26,4 +26,3 @@ vector<char> operator + (vector<char> a, const vector<char>& b) {
 	reverse(a.begin(), a.end());
 	return a;
 }
-

@@ -17,4 +17,3 @@ vector<int> pref(const string& s) {
 	}
 	return pf;
 }
-

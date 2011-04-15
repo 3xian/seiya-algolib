@@ -79,4 +79,3 @@ private:
 	vector<vector<Edge> > edge; 
 	vector<bool> mk;
 };
-
