@@ -52,7 +52,7 @@ template<typename T> pair<T, T> operator - (const pair<T, T>& a, const pair<T, T
 template<typename A, typename B> istream& operator >> (istream& i, pair<A, B>& v) {
 	return i >> v.first >> v.second;
 }
-template<typename A, typename B> B trans(const A& in) {
+template<typename A, typename B> B conv(const A& in) {
 	stringstream s; B out; s << in; s >> out;
 	return out;
 }
@@ -71,7 +71,7 @@ int main() {
 #ifndef ONLINE_JUDGE
 	freopen("1.txt", "r", stdin);
 	int ck = clock();
-#endif
+#endif 
 	york();
 #ifndef ONLINE_JUDGE
 	cout << "\n=====\nUsed: " << clock() - ck << " ms\n";
