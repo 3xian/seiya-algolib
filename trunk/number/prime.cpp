@@ -30,4 +30,3 @@ int prime(int n) {
 	}
 	return cnt;
 }
-

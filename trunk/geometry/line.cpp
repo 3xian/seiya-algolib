@@ -15,4 +15,3 @@ void perpendicular_bisector(const Point& p1, const Point& p2, Point &q1,
 	q1 = (p1 + p2) / 2;
 	q2 = q1 + (p2 - p1).turn_left();
 }
-

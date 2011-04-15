@@ -74,4 +74,3 @@ double arc(const Point& a, const Point& b) {
 	double t = atan2(fabs(c), dot(a, b));
 	return c >= 0.0 ? t : -t;
 }
-

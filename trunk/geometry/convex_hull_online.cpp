@@ -71,4 +71,3 @@ private:
 	Convex uh;
 	Convex lh;
 };
-

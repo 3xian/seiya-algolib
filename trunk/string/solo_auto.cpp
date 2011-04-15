@@ -26,4 +26,3 @@ void solo_auto(const string& s) {
 		}
 	}
 }
-

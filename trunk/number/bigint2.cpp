@@ -371,4 +371,3 @@ int main() {
 	bigint c = a / b;
 	return 0;
 }
-
