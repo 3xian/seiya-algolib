@@ -42,7 +42,7 @@ public:
 			}
 		}
 	}
-	T get_route(int source, int dest, vector<int> &route) {
+	T get_route(int source, int dest, vector<int>& route) const {
 		route.clear();
 		if (dis[dest] == INF) {
 			return -1;
