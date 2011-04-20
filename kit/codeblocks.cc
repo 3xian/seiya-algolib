@@ -31,8 +31,6 @@ using namespace std;
 
 typedef long long ll;
 typedef pair<int,int> pii;
-int count_bit(unsigned x) { return __builtin_popcount(x); }
-int first_bit(unsigned x) { return __builtin_ffs(x); }
 TT T abs(const T& x) { return x<0?-x:x; }
 TT T sq(const T& x) { return x*x; }
 TT void mil(T& a,const T& b) { if(a>b)a=b; }
