@@ -17,12 +17,12 @@
 #include <string>
 #include <vector>
 
-#define see(x)		cout<<"["#x"="<<x<<"]\n"
-#define itr(x)		typeof((x).begin())
-#define pv(i,n)		((i)>0?(i)-1:(n)-1)
-#define nx(i,n)		((i)+1<(n)?(i)+1:0)
-#define TT			template<typename T>
-#define TAB			template<typename A,typename B>
+#define see(x)	cout<<"["#x"="<<x<<"]\n"
+#define itr(x)	typeof((x).begin())
+#define pv(i,n)	((i)>0?(i)-1:(n)-1)
+#define nx(i,n)	((i)+1<(n)?(i)+1:0)
+#define TT		template<typename T>
+#define TAB		template<typename A,typename B>
 
 using namespace std;
 
