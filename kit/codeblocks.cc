@@ -21,7 +21,7 @@
 #define se(x)	cout<<"DEBUG : "#x" = "<<x<<"\n"
 #define itr(x)	__typeof((x).begin())
 #define ec(i,a)	for(itr(a) i=(a).begin();i!=(a).end();++i)
-#define fr(i,n) for(int i=0;i<(n);++i)
+#define fo(i,n) for(int i=0;i<(n);++i)
 #define pv(i,n)	((i)>0?(i)-1:(n)-1)
 #define nx(i,n)	((i)+1<(n)?(i)+1:0)
 #define TT		template<typename T>
