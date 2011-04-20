@@ -17,18 +17,17 @@
 #include <sstream>
 #include <string>
 #include <vector>
-
+#include <tr1/unordered_map>
+#include <tr1/unordered_set>
 #define se(x)	cout<<"DEBUG : "#x" = "<<x<<"\n"
-#define itr(x)	__typeof((x).begin())
-#define ec(i,a)	for(itr(a) i=(a).begin();i!=(a).end();++i)
 #define fo(i,n) for(int i=0;i<(n);++i)
 #define pv(i,n)	((i)>0?(i)-1:(n)-1)
 #define nx(i,n)	((i)+1<(n)?(i)+1:0)
+#define umap	tr1::unordered_map
+#define uset	tr1::unordered_set
 #define TT		template<typename T>
 #define TAB		template<typename A,typename B>
-
 using namespace std;
-
 typedef long long ll;
 typedef pair<int,int> pii;
 TT T abs(const T& x) { return x<0?-x:x; }
