@@ -16,8 +16,8 @@ T gcd(const T& a, const T& b, T& x, T& y) {
 /*
  * ax + by = c
  */
-bool linear_equation(llong a, llong b, llong c, llong& x, llong& y) {
-	llong n = gcd(a, b, x, y);
+bool linear_equation(ll a, ll b, ll c, ll& x, ll& y) {
+	ll n = gcd(a, b, x, y);
 	if (c % n != 0) {
 		return false;
 	}
@@ -25,8 +25,8 @@ bool linear_equation(llong a, llong b, llong c, llong& x, llong& y) {
 	y *= c / n;
 
 	// 最小非负解
-	int p = abs(b / n);
-	int q = abs(a / n);
+	ll p = abs(b / n);
+	ll q = abs(a / n);
 	x = (x % p + p) % p;
 	y = (y % q + q) % q;
 
