@@ -19,10 +19,7 @@
 #include <vector>
 #include <tr1/unordered_map>
 #include <tr1/unordered_set>
-#define ss(x)	cout<<"DEBUG : "#x" = "<<(x)<<"\n"
-#define fi		first
-#define se		second
-#define sz		size()
+#define se(x)	cout<<"DEBUG : "#x" = "<<(x)<<"\n"
 #define fo(i,n) for(int i=0;i<(n);++i)
 #define pv(i,n)	((i)>0?(i)-1:(n)-1)
 #define nx(i,n)	((i)+1<(n)?(i)+1:0)
