@@ -20,7 +20,7 @@ bool bfs(int n, int source, int t) {
         for (Edge* p = head[u]; p != NULL; p = p->next) {
             int& v = p->v;
             if (p->c > p->f && d[v] == -1) {
-                d[v]=d[u]+1;
+                d[v] = d[u] + 1;
                 q.push_back(v);
             }
         }
