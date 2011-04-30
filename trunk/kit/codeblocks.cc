@@ -18,14 +18,14 @@
 #include <vector>
 #include <tr1/unordered_map>
 #include <tr1/unordered_set>
-#define ss(x)	cout<<"DEBUG : "#x" = "<<(x)<<"\n"
+#define ss(x)   cout<<"DEBUG : "#x" = "<<(x)<<"\n"
 #define fo(i,n) for(int i=0;i<(n);++i)
-#define pv(i,n)	((i)>0?(i)-1:(n)-1)
-#define nx(i,n)	((i)+1<(n)?(i)+1:0)
-#define umap	tr1::unordered_map
-#define uset	tr1::unordered_set
-#define TT		template<typename T>
-#define TAB		template<typename A,typename B>
+#define pv(i,n) ((i)>0?(i)-1:(n)-1)
+#define nx(i,n) ((i)+1<(n)?(i)+1:0)
+#define umap    tr1::unordered_map
+#define uset    tr1::unordered_set
+#define TT      template<typename T>
+#define TAB     template<typename A,typename B>
 using namespace std;
 typedef long long ll;
 typedef pair<int,int> pii;
@@ -48,10 +48,10 @@ void york()
 
 int main()
 {
-	ios_base::sync_with_stdio(false);
+    ios_base::sync_with_stdio(false);
 #ifndef ONLINE_JUDGE
-	freopen("1.txt","r",stdin);
+    freopen("1.txt","r",stdin);
 #endif
-	york();
-	return 0;
+    york();
+    return 0;
 }
