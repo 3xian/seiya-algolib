@@ -1,13 +1,13 @@
 /**
  * multi-paths augment Dinic
- * don't forget to init head[] before setting edges
+ * don't forget to init ep and head[] before setting edges
  */
 
-struct Edge { int v,c,f; Edge* next; } e[M * 2], * head[N], * ep;
+struct Edge { int v, c, f; Edge* next; } e[M * 2], * head[N], * ep;
 vector<int> d;
 inline void new_edge(int u, int v, int c) {
-    ep->v=v,ep->c=c,ep->f=0,ep->next=head[u];head[u]=ep++;
-    ep->v=u,ep->c=c,ep->f=0,ep->next=head[v];head[v]=ep++;
+    ep->v=v, ep->c=c, ep->f=0, ep->next=head[u]; head[u]=ep++;
+    ep->v=u, ep->c=c, ep->f=0, ep->next=head[v]; head[v]=ep++;
 }
 inline Edge* back(Edge* p) { return e + (p - e ^ 1); }
 bool bfs(int n, int source, int t) {
@@ -31,7 +31,7 @@ int find(int u, int t, int in) {
     if (u == t) return in;
     int out = 0, m;
     for (Edge* p = head[u]; p != NULL && out < in; p = p->next) {
-        if (p->c > p->f && d[p->v] == d[u]+1 && (m = find(p->v, t, min(p->c - p->f, in - out))) > 0) {
+        if (p->c > p->f && d[p->v] == d[u] + 1 && (m = find(p->v, t, min(p->c - p->f, in - out))) > 0) {
             p->f += m;
             back(p)->f -= m;
             out += m;
