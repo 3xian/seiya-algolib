@@ -1,5 +1,4 @@
-struct Triangle
-{
+struct Triangle {
     Point a;
     Point b;
     Point c;

@@ -1,5 +1,4 @@
-struct Banana
-{
+struct Banana {
     static const int PERIOD = 666;
     int op_cnt;
     vector<vector<int>> v;
