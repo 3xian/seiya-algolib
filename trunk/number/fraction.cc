@@ -1,5 +1,4 @@
-template<typename T> struct Fraction
-{
+template<typename T> struct Fraction {
     T a;
     T b;
 

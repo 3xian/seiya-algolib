@@ -4,8 +4,7 @@
  * 可O(logn)查询一个点是否在凸包内部（此版本包括在边上）
  */
 
-struct Convex
-{
+struct Convex {
     set<Point> p;
 
     void clear() {
@@ -45,8 +44,7 @@ struct Convex
 
 };
 
-struct Hull
-{
+struct Hull {
     Convex uh;
     Convex lh;
 

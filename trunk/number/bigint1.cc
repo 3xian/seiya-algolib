@@ -2,8 +2,7 @@
  * CPS is not configurable
  */
 
-struct BigInteger
-{
+struct BigInteger {
     static const int CPS = 1000000000;
     vector<int> d;
 
