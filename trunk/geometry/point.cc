@@ -7,16 +7,13 @@ struct Point {
     double y;
 
     Point() {}
-    Point(const double& x, const double& y)
-        : x(x), y(y) {
-    }
-    template<typename T> Point(const pair<T, T>& a)
-        : x(a.first), y(a.second) {
-    }
+    Point(const double& _x, const double& _y) : x(_x), y(_y) {}
+    template<typename T> Point(const pair<T, T>& a) : x(a.first), y(a.second) {}
+
     bool operator < (const Point& a) const {
         return x + EPS < a.x || x < a.x + EPS && y + EPS < a.y;
     }
-    bool operator ==(const Point& a) const {
+    bool operator == (const Point& a) const {
         return !(*this < a || a < *this);
     }
     Point operator + (const Point& a) const {
@@ -40,13 +37,13 @@ struct Point {
     Point scale(const double& k) const {
         return (*this) * (k / len());
     }
-    Point turn_left() {
+    Point turn_left() const {
         return Point(-y, x);
     }
-    Point turn_right() {
+    Point turn_right() const {
         return Point(y, -x);
     }
-    Point rotate(const double& arc) {
+    Point rotate(const double& arc) const {
         double co = cos(arc);
         double si = sin(arc);
         return Point(x * co - y * si, x * si + y * co);
