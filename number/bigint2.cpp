@@ -1,4 +1,4 @@
-/*
+/**
  * 老外手笔
  * 没亲自测试过
  */
@@ -362,10 +362,8 @@ int main() {
 	cout << a / b << endl;
 
 	string sa, sb;
-	for (int i = 0; i < 100000; i++)
-		sa += i % 10 + '0';
-	for (int i = 0; i < 20000; i++)
-		sb += i % 10 + '0';
+	for (int i = 0; i < 100000; i++) sa += i % 10 + '0';
+	for (int i = 0; i < 20000; i++) sb += i % 10 + '0';
 	a = bigint(sa);
 	b = bigint(sb);
 	bigint c = a / b;

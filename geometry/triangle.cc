@@ -4,9 +4,7 @@ struct Triangle {
     Point c;
 
     Triangle() {}
-    Triangle(const Point& _a, const Point& _b, const Point& _c) :
-        a(_a), b(_b), c(_c) {
-    }
+    Triangle(const Point& _a, const Point& _b, const Point& _c) : a(_a), b(_b), c(_c) {}
     double area() const {
         return fabs(cross(a - c, b - c)) / 2.0;
     }
@@ -39,7 +37,7 @@ struct Triangle {
     // 重心
     // 1) 到三个顶点距离的平方和最小
     // 2) 到三边距离之积最大
-    Point centroid() {
+    Point centroid() const {
         return (a + b + c) / 3.0;
     }
 };

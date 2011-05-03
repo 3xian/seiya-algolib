@@ -3,13 +3,10 @@ struct Banana {
     int op_cnt;
     vector<vector<int>> v;
 
-    Banana()
-        : op_cnt(0) {
-    }
+    Banana() : op_cnt(0) {}
     void insert(int x) {
         if (v.empty()) {
-            vector<int> t;
-            t.push_back(x);
+            vector<int> t = {x};
             v.push_back(t);
             return;
         }
@@ -41,7 +38,7 @@ struct Banana {
                 if (v[i].back() < x) {
                     ret = v[i].back();
                 } else {
-                    vector<int>::iterator it = lower_bound(v[i].begin(), v[i].end(), x);
+                    auto it = lower_bound(v[i].begin(), v[i].end(), x);
                     if (it != v[i].begin()) ret = *--it;
                     break;
                 }
@@ -57,7 +54,7 @@ struct Banana {
                 if (v[i].front() > x) {
                     ret = v[i].front();
                 } else {
-                    vector<int>::iterator it = upper_bound(v[i].begin(), v[i].end(), x);
+                    auto it = upper_bound(v[i].begin(), v[i].end(), x);
                     if (it != v[i].end()) ret = *it;
                     break;
                 }
@@ -85,9 +82,7 @@ struct Banana {
         if (++op_cnt >= PERIOD) {
             op_cnt = 0;
             vector<int> a;
-            for (vector<vector<int> >::iterator it = v.begin(); it != v.end(); ++it) {
-                copy(it->begin(), it->end(), back_inserter(a));
-            }
+            for (auto& it : v) copy(it.begin(), it.end(), back_inserter(a));
             int ele_size = (int)sqrt(a.size() + 0.1);
             int ele_cnt = a.empty() ? 0 : (a.size() + ele_size - 1) / ele_size;
             v.clear();
