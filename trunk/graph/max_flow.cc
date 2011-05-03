@@ -2,7 +2,7 @@
  * if the edges are directed, need not create the backward ones
  */
 
-typedef map<int, pair<FlowType, FlowType> > Edge;  // (node, (flow, capacity))
+typedef map<int, pair<FlowType, FlowType> > Edge;  // {node,{flow,capacity}}
 struct State {
     int node, parent;
     FlowType flow;
