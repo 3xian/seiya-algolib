@@ -53,15 +53,23 @@ struct Point {
 int sgn(const double& x) {
     return x < -EPS ? -1 : x > EPS;
 }
+
 double cross(const Point& a, const Point& b) {
     return a.x * b.y - b.x * a.y;
 }
+
 double dot(const Point& a, const Point& b) {
     return a.x * b.x + a.y * b.y;
 }
+
 // arc(b)-arc(a), (-PI,PI]
 double arc(const Point& a, const Point& b) {
     double c = cross(a, b);
     double t = atan2(fabs(c), dot(a, b));
     return c >= 0.0 ? t : -t;
+}
+
+bool is_incircle(const Point& p, const Point& a, const Point& b, const Point& c) {
+    return a.norm() * cross(c - b, p - b) - b.norm() * cross(c - a, p - a)
+         + c.norm() * cross(b - a, p - a) - p.norm() * cross(b - a, c - a) > EPS;
 }
