@@ -52,7 +52,7 @@ struct Triangulation {
         ~Block() { delete prev; delete [] tri; }
     };
 
-    static const int BLOCK_SIZE = 2048;
+    static const int BLOCK_SIZE = 1024;
     int node_num;
     Block* block;
     TriangleNode* root;
