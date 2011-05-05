@@ -29,8 +29,7 @@ struct TriangleNode {
     }
 
     double side_length(int side) const {
-        //return (*p[(side + 1) % 3] - *p[(side + 2) % 3]).len();
-        return (*p[(side + 1) % 3] - *p[(side + 2) % 3]).norm() / 4.0;
+        return (*p[(side + 1) % 3] - *p[(side + 2) % 3]).len();
     }
     bool contain(Point const& q) const {
         return cross(*p[0] - q, *p[1] - q) > -EPS
