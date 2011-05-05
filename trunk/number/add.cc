@@ -1,10 +1,5 @@
 /**
- * @brief simple addition
- *
- * @param a
- * @param b
- *
- * @return a + b
+ * simple addition
  */
 
 vector<char> operator + (vector<char> a, const vector<char>& b) {
