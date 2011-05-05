@@ -34,7 +34,7 @@ TT T sq(const T&x) {return x*x;}
 TT void mil(T&a,const T&b) {if(a>b)a=b;}
 TT void mal(T&a,const T&b) {if(a<b)a=b;}
 TT void usort(vector<T>&a) {sort(a.begin(),a.end());a.erase(unique(a.begin(),a.end()),a.end());}
-TT T gcd(T a,T b) {while(b!=0){T t=a%b;a=b;b=t;} return a;}
+TT T gcd(T a,T b) {while(b!=0){T t=a%b;a=b;b=t;}return a;}
 TT pair<T,T> operator+(const pair<T,T>&a,const pair<T,T>&b) {return pair<T,T>(a.first+b.first,a.second+b.second);}
 TT pair<T,T> operator-(const pair<T,T>&a,const pair<T,T>&b) {return pair<T,T>(a.first-b.first,a.second-b.second);}
 TAB istream&operator>>(istream&i,pair<A,B>&v) {return i>>v.first>>v.second;}
