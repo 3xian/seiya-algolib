@@ -18,9 +18,7 @@ T gcd(const T& a, const T& b, T& x, T& y) {
  */
 bool linear_equation(ll a, ll b, ll c, ll& x, ll& y) {
 	ll n = gcd(a, b, x, y);
-	if (c % n != 0) {
-		return false;
-	}
+	if (c % n != 0) return false;
 	x *= c / n;
 	y *= c / n;
 
