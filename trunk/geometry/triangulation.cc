@@ -1,3 +1,8 @@
+/**
+ * Incremental Delaunay Triangulation
+ * random_shuffle the points before use
+ */
+
 struct TriangleNode;
 
 struct Edge {
