@@ -36,16 +36,26 @@ double arc(const Point& a, const Point& b) {  // arc(b)-arc(a), (-PI,PI]
     double t = atan2(fabs(c), dot(a, b));
     return c >= 0.0 ? t : -t;
 }
+bool is_onsegment(const Point& p, const Point& s1, const Point& s2, bool endpoint = true) {
+    return sgn(cross(p - s2, s1 - s2)) == 0 && dot(s1 - p, s2 - p) < (endpoint ? EPS : -EPS);
+}
+bool is_opposide(const Point& a1, const Point& a2, const Point& b1, const Point& b2) {
+    return sgn(cross(a1 - b2, b1 - b2)) * sgn(cross(a2 - b2, b1 - b2)) < 0;
+}
 bool is_incircle(const Point& p, const Point& a, const Point& b, const Point& c) {
     return a.norm() * cross(c - b, p - b) - b.norm() * cross(c - a, p - a)
          + c.norm() * cross(b - a, p - a) - p.norm() * cross(b - a, c - a) > EPS;
 }
-bool intersect(const Point& a, const Point& b, const Point& c, const Point& d, Point& x) {
+bool intersect(const Point& a, const Point& b, const Point& c, const Point& d, Point& out) {
     double s1 = cross(b - a, c - a);
     double s2 = cross(b - a, d - a);
     if (sgn(s2 - s1) == 0) return false;
-    x = Point(c.x * s2 - d.x * s1, c.y * s2 - d.y * s1) / (s2 - s1);
+    out = Point(c.x * s2 - d.x * s1, c.y * s2 - d.y * s1) / (s2 - s1);
     return true;
+}
+bool is_segment_intersect(const Point& a1, const Point& a2, const Point& b1, const Point& b2, bool endpoint = true) {
+    if (is_opposide(a1, a2, b1, b2) && is_opposide(b1, b2, a1, a2)) return true;
+    return endpoint && (is_onsegment(a1, b1, b2) || is_onsegment(a2, b1, b2) || is_onsegment(b1, a1, a2) || is_onsegment(b2, a1, a2));
 }
 void perpendicular_bisector(const Point& p1, const Point& p2, Point &q1, Point &q2) {
     q1 = (p1 + p2) / 2.0;
