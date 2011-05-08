@@ -1,29 +1,40 @@
-struct hstring {
-	int length;
-	int h1[LOGN][N];
-	int h2[LOGN][N];
-	int hash1(int a, int b) { return a * a ^ b; }
-	int hash2(int a, int b) { return a * 131 + b; }
-	void assign(const char* s, int n) {
-		length = n;
-		for (int j = 0; j < n; j++) h1[0][j] = h2[0][j] = s[j];
-		for (int i = 0; 1 << i + 1 <= n; i++)
-			for (int j = 0; j + (1 << i + 1) <= n; j++) {
-				h1[i + 1][j] = hash1(h1[i][j], h1[i][j + (1 << i)]);
-				h2[i + 1][j] = hash2(h2[i][j], h2[i][j + (1 << i)]);
-			}
+struct Hstring {
+	int size;
+	int layer;
+    vector<vector<pii>> h;
+
+	Hstring() {}
+	Hstring(const string& s) {
+	    size = s.size();
+	    layer = max(32 - __builtin_clz(size), 1);
+	    h.resize(layer, vector<pii>(size));
+		for (int j = 0; j < size; ++j) h[0][j].first = h[0][j].second = s[j];
+		for (int i = 0; i + 1 < layer; ++i)
+			for (int j = 0; j + (1 << i + 1) <= size; ++j)
+				h[i + 1][j] = fun(h[i][j], h[i][j + (1 << i)]);
 	}
+
+    pii fun(const pii& a, const pii& b) const {
+        return pii(a.first * a.first ^ b.first, a.second * 131 + b.second);
+    }
 };
 
-int lcp(const hstring& a, int ap, const hstring& b, int bp, int len) {
-	int diff = len;
-	for (int i = LOGN - 1; i >= 0; i--)
-		if (1 << i <= diff && a.h1[i][ap] == b.h1[i][bp] && a.h2[i][ap] == b.h2[i][bp])
-			ap += 1 << i, bp += 1 << i, diff -= 1 << i;
-	return len - diff;
+int lcp(const Hstring& a, int pa, const Hstring& b, int pb) {
+    int ret = 0;
+	for (int i = min(a.layer, b.layer) - 1; i >= 0; --i) {
+		if (pa + (1 << i) <= a.size && pb + (1 << i) <= b.size && a.h[i][pa] == b.h[i][pb]) {
+			ret += 1 << i;
+			pa += 1 << i;
+			pb += 1 << i;
+		}
+	}
+	return ret;
 }
 
-int cmp(const hstring& a, int ap, const hstring& b, int bp, int len) {
-	int p = lcp(a, ap, b, bp, len);
-	return p == len ? 0 : a.h1[0][ap + p] - b.h1[0][bp + p];
+int cmp(const Hstring& a, int pa, const Hstring& b, int pb, int len = __INT_MAX__) {
+	int n = lcp(a, pa, b, pb);
+	if (n >= len || pa + n >= a.size && pb + n >= b.size) return 0;
+    if (pa + n >= a.size) return -1;
+    if (pb + n >= b.size) return 1;
+    return a.h[0][pa + n].first - b.h[0][pb + n].first;
 }
