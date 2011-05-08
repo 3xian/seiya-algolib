@@ -45,7 +45,7 @@ Point orthocenter(const Point& a, const Point& b, const Point& c) {
 
 /**
  * area of union of triangles
- * O(n^2logn)
+ * O(n^3)
  */
 double area_union(vector<Triangle> a) {
     for (size_t i = 0; i < a.size(); ++i) {
