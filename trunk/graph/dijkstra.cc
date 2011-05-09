@@ -19,7 +19,7 @@ template<typename T> struct Dijkstra {
     void init(int n) {
         edge = vector<vector<Edge>>(n, vector<Edge>());
         mk = vector<bool>(n, false);
-        dis = vector<T>(n, INF);
+        dis.resize(n); for (T& x : dis) x = INF;
         father = vector<int>(n, -1);
     }
     void new_edge(int u, int v, const T& weight) {
