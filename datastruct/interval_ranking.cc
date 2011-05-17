@@ -23,7 +23,7 @@ int main() {
         for (int i = 0; i < n; ++i) scanf("%d", &a[i]);
         memcpy(d, a, sizeof(a[0]) * n);
         memcpy(s, a, sizeof(a[0]) * n);
-        sr = (int)sqrt(n + 0.5);
+        sr = (int)sqrt(n + 0.5) * 2;
         for (int i = 0; i < n; i += sr) {
             int j = min(n, i + sr);
             sort(s + i, s + j);
