@@ -40,12 +40,10 @@ TT pair<T,T> operator-(const pair<T,T>&a,const pair<T,T>&b) {return pair<T,T>(a.
 TAB istream&operator>>(istream&i,pair<A,B>&v) {return i>>v.first>>v.second;}
 TAB B conv(const A&i) {stringstream s;s<<i;B o;s>>o;return o;}
 
-void york()
-{
+void york() {
 }
 
-int main()
-{
+int main() {
     ios_base::sync_with_stdio(false);
 #ifndef ONLINE_JUDGE
     freopen("1.txt","r",stdin);
