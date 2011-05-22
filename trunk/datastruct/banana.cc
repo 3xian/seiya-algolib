@@ -1,9 +1,14 @@
-struct Banana {
+struct Banana
+{
     static const int PERIOD = 666;
+
     int op_cnt;
     vector<vector<int>> v;
 
-    Banana() : op_cnt(0) {}
+    Banana()
+        : op_cnt(0) {
+    }
+
     void insert(int x) {
         if (v.empty()) {
             vector<int> t = {x};
@@ -22,6 +27,7 @@ struct Banana {
         inplace_merge(v[p].begin(), v[p].begin() + v[p].size() - 1, v[p].end());
         maintain();
     }
+
     void erase(int x) {
         for (size_t i = 0; i < v.size(); ++i) {
             if (!v[i].empty() && v[i].front() <= x && x <= v[i].back()) {
@@ -31,6 +37,7 @@ struct Banana {
         }
         maintain();
     }
+
     int prev(int x) {
         int ret;
         for (size_t i = 0; i < v.size(); ++i) {
@@ -47,6 +54,7 @@ struct Banana {
         maintain();
         return ret;
     }
+
     int next(int x) {
         int ret;
         for (int i = (int)v.size() - 1; i >= 0; --i) {
@@ -63,6 +71,7 @@ struct Banana {
         maintain();
         return ret;
     }
+
     int rank(int x) {
         int ret;
         for (size_t i = 0; i < v.size(); ++i) {
@@ -78,6 +87,7 @@ struct Banana {
         maintain();
         return ret;
     }
+
     void maintain() {
         if (++op_cnt >= PERIOD) {
             op_cnt = 0;
