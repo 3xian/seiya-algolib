@@ -5,7 +5,8 @@
 
 struct TriangleNode;
 
-struct Edge {
+struct Edge
+{
     TriangleNode* tri;
     int side;
 
@@ -13,12 +14,15 @@ struct Edge {
     Edge(TriangleNode* _tri, int _side) : tri(_tri), side(_side) {}
 };
 
-struct TriangleNode {
+struct TriangleNode
+{
     const Point* p[3];
     Edge edge[3];
     TriangleNode* child[3];
 
-    TriangleNode() {}
+    TriangleNode() {
+    }
+
     TriangleNode(const Point* p0, const Point* p1, const Point* p2) {
         p[0] = p0;
         p[1] = p1;
@@ -31,6 +35,7 @@ struct TriangleNode {
     double side_length(int side) const {
         return (*p[(side + 1) % 3] - *p[(side + 2) % 3]).len();
     }
+
     bool contain(Point const& q) const {
         return cross(*p[0] - q, *p[1] - q) > -EPS
             && cross(*p[1] - q, *p[2] - q) > -EPS
@@ -43,8 +48,10 @@ void link(const Edge& a, const Edge& b) {
     if (b.tri != NULL) b.tri->edge[b.side] = a;
 }
 
-struct Triangulation {
-    struct Block {
+struct Triangulation
+{
+    struct Block
+    {
         TriangleNode* tri;
         Block* prev;
 
@@ -54,7 +61,7 @@ struct Triangulation {
 
     static const int BLOCK_SIZE = 1024;
     int node_num;
-    Block* block;
+    Block *block;
     TriangleNode* root;
     Point inf[3];
 
@@ -68,6 +75,7 @@ struct Triangulation {
         inf[2] = Point(0, +LOTS);
         root = new_triangle(inf, inf + 1, inf + 2);
     }
+
     ~Triangulation() {
         delete block;
     }

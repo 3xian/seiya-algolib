@@ -1,7 +1,10 @@
-struct Triangle {
+struct Triangle
+{
     Point p[3];
 
-    Triangle() {}
+    Triangle() {
+    }
+
     Triangle(const Point& a, const Point& b, const Point& c) {
         p[0] = a;
         p[1] = b;

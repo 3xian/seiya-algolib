@@ -4,12 +4,14 @@
  * 可O(logn)查询一个点是否在凸包内部（此版本包括在边上）
  */
 
-struct Convex {
+struct Convex
+{
     set<Point> p;
 
     void clear() {
         p.clear();
     }
+
     void insert(const Point& q) {
         if (cover(q)) return;
         auto pq = p.insert(q).first;
@@ -34,6 +36,7 @@ struct Convex {
             pa = pb;
         }
     }
+
     bool cover(const Point& q) const {
         auto pr = p.lower_bound(q);
         if (pr == p.end()) return false;
@@ -44,7 +47,8 @@ struct Convex {
     }
 };
 
-struct Hull {
+struct Hull
+{
     Convex uh;
     Convex lh;
 
@@ -52,10 +56,12 @@ struct Hull {
         uh.clear();
         lh.clear();
     }
+
     void insert(const Point& p) {
         uh.insert(p);
         lh.insert(Point(p.x, -p.y));
     }
+
     bool is_contain(const Point& p) const {
         return uh.cover(p) && lh.cover(Point(p.x, -p.y));
     }

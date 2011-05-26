@@ -4,13 +4,21 @@ const double PI = acos(-1.0);
 
 inline int sgn(const double &x) { return x < -EPS ? -1 : x > EPS; }
 
-struct Point {
+struct Point
+{
     double x;
     double y;
 
-    Point() {}
-    Point(const double &_x, const double &_y) : x(_x), y(_y) {}
-    template<typename A, typename B> Point(const pair<A, B> &a) : x(a.first), y(a.second) {}
+    Point() {
+    }
+
+    Point(const double &_x, const double &_y)
+        : x(_x), y(_y) {
+    }
+
+    template<typename A, typename B> Point(const pair<A, B> &a)
+        : x(a.first), y(a.second) {
+    }
 
     bool operator < (const Point &a) const { return x + EPS < a.x || x < a.x + EPS && y + EPS < a.y; }
     bool operator == (const Point &a) const { return !(*this < a || a < *this); }
@@ -30,8 +38,12 @@ struct Point {
     }
 };
 
-double cross(const Point &a, const Point &b) { return a.x * b.y - b.x * a.y; }
-double dot(const Point &a, const Point &b) { return a.x * b.x + a.y * b.y; }
+double cross(const Point &a, const Point &b) {
+    return a.x * b.y - b.x * a.y;
+}
+double dot(const Point &a, const Point &b) {
+    return a.x * b.x + a.y * b.y;
+}
 double arc(const Point &a, const Point &b) {  // arc(b)-arc(a), (-PI,PI]
     double c = cross(a, b);
     double t = atan2(fabs(c), dot(a, b));
@@ -43,6 +55,7 @@ bool is_onsegment(const Point &p, const Point &s1, const Point &s2, bool endpoin
 bool is_opposide(const Point &a1, const Point &a2, const Point &b1, const Point &b2) {
     return sgn(cross(a1 - b2, b1 - b2)) * sgn(cross(a2 - b2, b1 - b2)) < 0;
 }
+// <abc> should be counter-clockwise
 bool is_incircle(const Point &p, const Point &a, const Point &b, const Point &c) {
     return a.norm() * cross(c - b, p - b) - b.norm() * cross(c - a, p - a)
          + c.norm() * cross(b - a, p - a) - p.norm() * cross(b - a, c - a) > EPS;
