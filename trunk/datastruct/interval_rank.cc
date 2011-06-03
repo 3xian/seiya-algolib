@@ -1,5 +1,5 @@
 /**
- * maintaining of interval ranking
+ * maintain interval rank
  * ZOJ 2112
  */
 
