@@ -3,11 +3,16 @@
  * Dijkstra algorithm
  */
 
-template<typename T> struct Dijkstra {
-    struct Edge {
+template<typename T> struct Dijkstra
+{
+    struct Edge
+    {
         int v;
         T w;
-        bool operator < (const Edge& e) const { return w > e.w; }
+
+        bool operator <(const Edge& e) const {
+            return w > e.w;
+        }
     };
 
     static const T INF = __INT_MAX__ / 2;
@@ -19,12 +24,14 @@ template<typename T> struct Dijkstra {
     void init(int n) {
         edge = vector<vector<Edge>>(n, vector<Edge>());
         mk = vector<bool>(n, false);
-        dis.resize(n); for (T& x : dis) x = INF;
+        dis.resize(n); for (T &x: dis) x = INF;
         father = vector<int>(n, -1);
     }
-    void new_edge(int u, int v, const T& weight) {
+
+    void new_edge(int u, int v, const T &weight) {
         edge[u].push_back(Edge{v, weight});
     }
+
     void run(int source) {
         priority_queue<Edge> q;
         dis[source] = 0;
@@ -35,8 +42,8 @@ template<typename T> struct Dijkstra {
             if (mk[v1]) continue;
             mk[v1] = true;
             for (auto& i : edge[v1]) {
-                int& v2 = i.v;
-                T& w2 = i.w;
+                int &v2 = i.v;
+                T &w2 = i.w;
                 if (!mk[v2]) {
                     T w3 = w1 + w2;
                     if (w3 < dis[v2]) {
@@ -48,6 +55,7 @@ template<typename T> struct Dijkstra {
             }
         }
     }
+
     T get_route(int source, int dest, vector<int>& route) const {
         route.clear();
         if (dis[dest] == INF) return -1;
