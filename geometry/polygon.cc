@@ -1,12 +1,7 @@
 typedef vector<Point> Polygon;
 
 bool is_ccw(const Polygon &p) {
-    int v = 0;
-    for (int i = 1; i < p.size(); ++i) {
-        if (p[i] < p[v]) {
-            v = i;
-        }
-    }
+    int v = min_element(p.begin(), p.end()) - p.begin();
     return (p[nx(v, p.size())] - p[v]) % (p[pv(v, p.size())] - p[v]) > 0.0;
 }
 
