@@ -7,8 +7,8 @@ bool is_ccw(const Polygon &p) {
 
 double polygon_area(const Polygon &p) { // 不加fabs则逆时针面积为正
     double sum = 0.0;
-    for (int i = 0; i < p.size(); ++i) {
-        sum += p[i] % p[nx(i, p.size())];
+    for (int i = p.size() - 1, j = 0; j < p.size(); i = j++) {
+        sum += p[i] % p[j];
     }
     return fabs(sum * 0.5);
 }
@@ -21,9 +21,7 @@ Polygon cut(const Polygon &p, Point a, Point b) { // a->b左侧
             q.push_back(p[i]);
         }
         if (is_opposide(p[i], p[j], a, b)) {
-            Point t;
-            intersect(p[i], p[j], a, b, t);
-            q.push_back(t);
+            q.push_back(intersect(p[i], p[j], a, b));
         }
     }
     return q;
@@ -36,7 +34,7 @@ Polygon cut(Polygon a, const Polygon &b) {
     return a;
 }
 
-void divide(const Polygon &p, const vector<int> &ord, vector<vector<int> > &tri) {
+void divide(const Polygon &p, vector<int> &ord, vector<Polygon> &tri) {
     if (ord.size() < 3) {
         return;
     }
@@ -52,10 +50,7 @@ void divide(const Polygon &p, const vector<int> &ord, vector<vector<int> > &tri)
     int x;
     double d = -1.0;
 
-    for (int i = 0; i < n; ++i) {
-        if (i == u || i == v || i == w) {
-            continue;
-        }
+    for (int i = nx(w, n); i != u; i = nx(i, n)) {
         if (inside_triangle(p[ord[i]], p[ord[u]], p[ord[v]], p[ord[w]], true)) {
             double t = dis(p[ord[i]], p[ord[u]], p[ord[w]]);
             if (t > d) {
@@ -65,18 +60,16 @@ void divide(const Polygon &p, const vector<int> &ord, vector<vector<int> > &tri)
         }
     }
 
-    vector<int> new_ord;
     if (d < -EPS) {
-        vector<int> t(3);
-        t[0] = ord[u];
-        t[1] = ord[v];
-        t[2] = ord[w];
+        Polygon t(3);
+        t[0] = p[ord[u]];
+        t[1] = p[ord[v]];
+        t[2] = p[ord[w]];
         tri.push_back(t);
-        for (int i = w; i != v; i = nx(i, n)) {
-            new_ord.push_back(ord[i]);
-        }
-        divide(p, new_ord, tri);
+        ord.erase(ord.begin() + v);
+        divide(p, ord, tri);
     } else {
+        vector<int> new_ord;
         for (int i = v; i != x; i = nx(i, n)) {
             new_ord.push_back(ord[i]);
         }
@@ -91,8 +84,8 @@ void divide(const Polygon &p, const vector<int> &ord, vector<vector<int> > &tri)
     }
 }
 
-vector<vector<int> > polygon_triangulation(const vector<Point> &p) {
-    vector<vector<int> > ret;
+vector<Polygon> polygon_triangulation(const vector<Point> &p) {
+    vector<Polygon> ret;
     vector<int> ord(p.size());
     for (int i = 0; i < p.size(); ++i) {
         ord[i] = i;
@@ -101,23 +94,18 @@ vector<vector<int> > polygon_triangulation(const vector<Point> &p) {
     return ret;
 }
 
-double intersect_area(Polygon a, Polygon b) {
+double intersect_area(const Polygon &a, Polygon b) {
+    vector<Polygon> ta = polygon_triangulation(a);
+    vector<Polygon> tb = polygon_triangulation(b);
+
     if (!is_ccw(b)) {
         reverse(b.begin(), b.end());
     }
-    vector<vector<int> > ta = polygon_triangulation(a);
-    vector<vector<int> > tb = polygon_triangulation(b);
 
     double sum = 0.0;
-    Polygon pa(3);
-    Polygon pb(3);
     for (int i = 0; i < ta.size(); ++i) {
         for (int j = 0; j < tb.size(); ++j) {
-            for (int k = 0; k < 3; ++k) {
-                pa[k] = a[ta[i][k]];
-                pb[k] = b[tb[j][k]];
-            }
-            sum += polygon_area(cut(pa, pb));
+            sum += polygon_area(cut(ta[i], tb[j]));
         }
     }
     return sum;

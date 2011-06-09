@@ -91,6 +91,15 @@ double dis(const Point &p, const Point &a, const Point &b) {
     return fabs((p - b) % (a - b)) / (a - b).len();
 }
 
+Point intersect(const Point &a, const Point &b, const Point &c, const Point &d) {
+    return a + (b - a) * ((c - a) % (d - c) / ((b - a) % (d - c)));
+}
+
+void perpendicular_bisector(const Point &p1, const Point &p2, Point &q1, Point &q2) {
+    q1 = (p1 + p2) / 2.0;
+    q2 = q1 + (p2 - p1).turn_left();
+}
+
 bool is_onsegment(const Point &p, const Point &s1, const Point &s2, bool endpoint = true) {
     return sgn((p - s2) % (s1 - s2)) == 0 && (s1 - p) * (s2 - p) < (endpoint ? EPS : -EPS);
 }
@@ -108,16 +117,4 @@ bool is_segment_intersect(const Point &a1, const Point &a2, const Point &b1, con
     if (is_opposide(a1, a2, b1, b2) && is_opposide(b1, b2, a1, a2)) return true;
     return endpoint && (is_onsegment(a1, b1, b2) || is_onsegment(a2, b1, b2)
                      || is_onsegment(b1, a1, a2) || is_onsegment(b2, a1, a2));
-}
-
-bool intersect(const Point &a, const Point &b, const Point &c, const Point &d, Point &out) {
-    double t = (b - a) % (d - c);
-    if (sgn(t) == 0) return false;
-    out = a + (b - a) * ((c - a) % (d - c) / t);
-    return true;
-}
-
-void perpendicular_bisector(const Point &p1, const Point &p2, Point &q1, Point &q2) {
-    q1 = (p1 + p2) / 2.0;
-    q2 = q1 + (p2 - p1).turn_left();
 }
