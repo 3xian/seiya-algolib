@@ -1,5 +1,5 @@
 const double AES = 1e-10;
-const double EPS = 1e-6;
+const double EPS = 1e-7;
 const double PI = acos(-1.0);
 
 inline int sgn(double x) {
