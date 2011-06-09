@@ -1,25 +1,24 @@
-struct Triangle
-{
-    Point p[3];
-
-    Triangle() {
+bool inside_triangle(const Point &p, Point a, Point b, Point c, bool edge = true) {
+    if ((b - a) % (c - a) < 0.0) {
+        swap(b, c);
     }
+    return (b - a) % (p - a) > (edge ? -EPS : EPS)
+        && (c - b) % (p - b) > (edge ? -EPS : EPS)
+        && (a - c) % (p - c) > (edge ? -EPS : EPS);
+}
 
-    Triangle(const Point& a, const Point& b, const Point& c) {
-        p[0] = a;
-        p[1] = b;
-        p[2] = c;
-    }
+/**
+ * 重心
+ * 1) 到三个顶点距离的平方和最小
+ * 2) 到三边距离之积最大
+ */
+Point centroid(const Point &a, const Point &b, const Point &c) {
+    return (a + b + c) / 3.0;
+}
 
-    double area() const { return fabs(cross(p[0] - p[2], p[1] - p[2])) / 2.0; }
-    // 重心
-    // 1) 到三个顶点距离的平方和最小
-    // 2) 到三边距离之积最大
-    Point centroid() const { return (p[0] + p[1] + p[2]) / 3.0; }
-    bool is_clockwise() const { return cross(p[1] - p[0], p[2] - p[0]) < 0.0; }
-};
-
-// 外心
+/**
+ * 外心
+ */
 Point circumcenter(const Point& a, const Point& b, const Point& c) {
     Point p[5];
     perpendicular_bisector(a, b, p[0], p[1]);
@@ -27,7 +26,10 @@ Point circumcenter(const Point& a, const Point& b, const Point& c) {
     intersect(p[0], p[1], p[2], p[3], p[4]);
     return p[4];
 }
-// 内心
+
+/**
+ * 内心
+ */
 Point incenter(const Point& a, const Point& b, const Point& c) {
     Point u1 = a, u2, v1 = b, v2, x;
     double t1 = (atan2(b.y - a.y, b.x - a.x) + atan2(c.y - a.y, c.x - a.x)) / 2.0;
@@ -37,7 +39,10 @@ Point incenter(const Point& a, const Point& b, const Point& c) {
     intersect(u1, u2, v1, v2, x);
     return x;
 }
-// 垂心
+
+/**
+ * 垂心
+ */
 Point orthocenter(const Point& a, const Point& b, const Point& c) {
     Point u(c.x - a.y + b.y, c.y + a.x - b.x);
     Point v(b.x - a.y + c.y, b.y + a.x - c.x);
@@ -47,10 +52,9 @@ Point orthocenter(const Point& a, const Point& b, const Point& c) {
 }
 
 /**
- * area of union of triangles
  * O(n^3)
  */
-double area_union(vector<Triangle> a) {
+double union_area(vector<Triangle> a) {
     for (size_t i = 0; i < a.size(); ++i) {
         if (a[i].is_clockwise()) swap(a[i].p[1], a[i].p[2]);
     }

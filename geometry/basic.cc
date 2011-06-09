@@ -87,6 +87,10 @@ double arc(const Point &a, const Point &b) { // arc(b)-arc(a), (-PI,PI]
     return c >= 0.0 ? t : -t;
 }
 
+double dis(const Point &p, const Point &a, const Point &b) {
+    return fabs((p - b) % (a - b)) / (a - b).len();
+}
+
 bool is_onsegment(const Point &p, const Point &s1, const Point &s2, bool endpoint = true) {
     return sgn((p - s2) % (s1 - s2)) == 0 && (s1 - p) * (s2 - p) < (endpoint ? EPS : -EPS);
 }
@@ -107,10 +111,9 @@ bool is_segment_intersect(const Point &a1, const Point &a2, const Point &b1, con
 }
 
 bool intersect(const Point &a, const Point &b, const Point &c, const Point &d, Point &out) {
-    double s1 = (b - a) % (c - a);
-    double s2 = (b - a) % (d - a);
-    if (sgn(s2 - s1) == 0) return false;
-    out = Point(c.x * s2 - d.x * s1, c.y * s2 - d.y * s1) / (s2 - s1);
+    double t = (b - a) % (d - c);
+    if (sgn(t) == 0) return false;
+    out = a + (b - a) * ((c - a) % (d - c) / t);
     return true;
 }
 
