@@ -1,10 +1,8 @@
-bool inside_triangle(const Point &p, Point a, Point b, Point c, bool edge = true) {
-    if ((b - a) % (c - a) < 0.0) {
-        swap(b, c);
-    }
-    return (b - a) % (p - a) > (edge ? -EPS : EPS)
-        && (c - b) % (p - b) > (edge ? -EPS : EPS)
-        && (a - c) % (p - c) > (edge ? -EPS : EPS);
+bool inside_triangle(const Point &p, const Point &a, const Point &b, const Point &c, bool edge = true) { // ccw
+    double bound = edge ? -EPS : EPS;
+    return (b - a) % (p - a) > bound
+        && (c - b) % (p - b) > bound
+        && (a - c) % (p - c) > bound;
 }
 
 /**
