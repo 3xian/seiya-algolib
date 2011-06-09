@@ -18,11 +18,10 @@ Point centroid(const Point &a, const Point &b, const Point &c) {
  * ÍâÐÄ
  */
 Point circumcenter(const Point& a, const Point& b, const Point& c) {
-    Point p[5];
+    Point p[4];
     perpendicular_bisector(a, b, p[0], p[1]);
     perpendicular_bisector(b, c, p[2], p[3]);
-    intersect(p[0], p[1], p[2], p[3], p[4]);
-    return p[4];
+    return intersect(p[0], p[1], p[2], p[3]);
 }
 
 /**
@@ -34,8 +33,7 @@ Point incenter(const Point& a, const Point& b, const Point& c) {
     double t2 = (atan2(a.y - b.y, a.x - b.x) + atan2(c.y - b.y, c.x - b.x)) / 2.0;
     u2 = Point(u1.x + cos(t1), u1.y + sin(t1));
     v2 = Point(v1.x + cos(t2), v1.y + sin(t2));
-    intersect(u1, u2, v1, v2, x);
-    return x;
+    return intersect(u1, u2, v1, v2);
 }
 
 /**
@@ -44,9 +42,7 @@ Point incenter(const Point& a, const Point& b, const Point& c) {
 Point orthocenter(const Point& a, const Point& b, const Point& c) {
     Point u(c.x - a.y + b.y, c.y + a.x - b.x);
     Point v(b.x - a.y + c.y, b.y + a.x - c.x);
-    Point x;
-    intersect(c, u, b, v, x);
-    return x;
+    return intersect(c, u, b, v);
 }
 
 /**
@@ -64,8 +60,7 @@ double union_area(vector<Triangle> a) {
             for (int u = 0; u < 3; ++u) {
                 for (int v = 0; v < 3; ++v) {
                     if (is_segment_intersect(a[i].p[u], a[i].p[(u + 1) % 3], a[j].p[v], a[j].p[(v + 1) % 3], false)) {
-                        Point t;
-                        intersect(a[i].p[u], a[i].p[(u + 1) % 3], a[j].p[v], a[j].p[(v + 1) % 3], t);
+                        Point t = intersect(a[i].p[u], a[i].p[(u + 1) % 3], a[j].p[v], a[j].p[(v + 1) % 3]);
                         xs.push_back(t.x);
                     }
                 }
