@@ -1,6 +1,8 @@
 struct Pitaya
 {
-    Pitaya *l, *r, *f;
+    Pitaya *l;
+    Pitaya *r;
+    Pitaya *f;
     int sub_size;
 
     Pitaya()
@@ -30,24 +32,25 @@ struct Pitaya
         r = p; if (p != NULL) p->f = this; update();
     }
 
-    void rotate(int c) {
+    void rotate(bool rt) {
         Pitaya *g = f->f;
         if (!f->is_root()) (g->l == f) ? g->l = this : g->r = this;
-        (c == 0) ? (f->lc(r), rc(f)) : (f->rc(l), lc(f));
+        rt ? (f->rc(l), lc(f)) : (f->lc(r), rc(f));
         f = g;
     }
 
-    Pitaya *raise() {
+    void raise() {
         while (!is_root()) {
             if (f->is_root()) {
-                f->l == this ? rotate(0) : rotate(1);
+                rotate(f->r == this);
             } else if (f->f->l == f) {
-                f->l == this ? (f->rotate(0), rotate(0)) : (rotate(1), rotate(0));
+                f->l == this ? f->rotate(0) : rotate(1);
+                rotate(0);
             } else {
-                f->r == this ? (f->rotate(1), rotate(1)) : (rotate(0), rotate(1));
+                f->r == this ? f->rotate(1) : rotate(0);
+                rotate(1);
             }
         }
-        return this;
     }
 };
 
