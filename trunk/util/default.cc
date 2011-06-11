@@ -20,13 +20,13 @@
 #include <tr1/unordered_map>
 #include <tr1/unordered_set>
 
-using namespace std;
-
 #define umap    tr1::unordered_map
 #define uset    tr1::unordered_set
 #define pv(i,n) ((i)>0?(i)-1:(n)-1)
 #define nx(i,n) ((i)+1<(n)?(i)+1:0)
 #define ss(x)   cout<<"DEBUG : "#x" = "<<(x)<<"\n"
+
+using namespace std;
 
 typedef long long ll;
 typedef pair<int, int> pii;
