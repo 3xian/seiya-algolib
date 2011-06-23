@@ -44,10 +44,10 @@ void york() {
 
 int main() {
 #ifdef ONLINE_JUDGE
-    ios_base::sync_with_stdio(false);
+  ios_base::sync_with_stdio(false);
 #else
-    freopen("1.txt", "r", stdin);
+  freopen("1.txt", "r", stdin);
 #endif
-    york();
-    return 0;
+  york();
+  return 0;
 }
