@@ -38,7 +38,7 @@ def isap(graph, source, sink):
 				graph[u][v][0] -= aug
 				u = v
 			flow += aug
-		
+
 		go = False
 		mindis = n
 		for v, w in graph[u].items():
