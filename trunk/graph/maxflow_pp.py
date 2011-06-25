@@ -3,10 +3,8 @@ from collections import deque
 inf = float('inf')
 
 def add_edge(graph, u, v, cap):
-	if u not in graph[v]:
-		graph[u][v] = [0, 0]
-		graph[v][u] = [0, 0]
-	graph[u][v][1] += cap
+	graph[u].setdefault(v, [0, 0])[1] += cap
+	graph[v].setdefault(u, [0, 0])
 
 def preflow_push(graph, source, sink):
 	n = len(graph)
