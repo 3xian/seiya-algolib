@@ -23,7 +23,7 @@
 #define ss(x)   cout<<"DEBUG : "#x" = "<<(x)<<"\n"
 
 using namespace std;
-typedef __int64 ll;
+typedef long long ll;
 typedef pair<int, int> pii;
 template <typename T> T sqr(const T &x) { return x * x; }
 template <typename T> void mil(T &a, const T &b) { if (a > b) a = b; }
