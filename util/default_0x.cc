@@ -15,6 +15,7 @@
 #include <queue>
 #include <set>
 #include <sstream>
+#include <stack>
 #include <string>
 #include <vector>
 #include <tr1/unordered_map>
