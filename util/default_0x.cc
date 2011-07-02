@@ -25,7 +25,11 @@
 #define uset    tr1::unordered_set
 #define pv(i,n) ((i)>0?(i)-1:(n)-1)
 #define nx(i,n) ((i)+1<(n)?(i)+1:0)
-#define ss(x)   cout<<"DEBUG : "#x" = "<<(x)<<"\n"
+#ifdef LOCAL
+#define ss(x)   cout<<">> "#x" = "<<(x)<<"\n"
+#else
+#define ss(x) 
+#endif
 
 using namespace std;
 typedef long long ll;
