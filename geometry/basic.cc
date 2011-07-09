@@ -1,13 +1,13 @@
 const double AES = 1e-10;
-const double EPS = 1e-10;
+const double EPS = 1e-7;
 const double PI = acos(-1.0);
+
+struct Point;
+struct Circle;
 
 inline int sgn(double x) {
   return x < -EPS ? -1 : x > EPS;
 }
-
-struct Point;
-struct Circle;
 
 struct Point
 {
