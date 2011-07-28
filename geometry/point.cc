@@ -76,8 +76,13 @@ public:
     }
 
     bool scan();
+
     void print() const;
+
+    /// rotate ccw
     Point rotate(double arc) const;
+
+    /// check if inside circle
     bool inside(const Circle& c, bool border = true) const;
 };
 
