@@ -1,17 +1,16 @@
-template <typename T>
-struct Tuple
+template<typename T, int N>
+class Tuple
 {
-  static const int N = 3;
-  T a[N];
+public:
+    T& operator [](int i) {
+        return a[i];
+    }
 
-  T& operator [](int i) {
-    return a[i];
-  }
+    bool operator <(const Tuple& rhs) const {
+        return lexicographical_compare(a, a + N, rhs.a, rhs.a + N);
+    }
 
-  bool operator <(const Tuple &rhs) const {
-    for (int i = 0; i < N; ++i)
-      if (a[i] != rhs[i])
-        return a[i] < rhs[i];
-    return false;
-  }
-};
+private:
+    T a[N];
+}
+
