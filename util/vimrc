@@ -1,0 +1,22 @@
+"normal
+set nobackup
+set nu
+set hls
+
+"format
+set ts=4
+set sts=4
+set sw=4
+set et
+set cino=g0
+
+"coding
+set fileencodings=gb18030,gbk,utf-8
+
+"input
+filetype plugin on
+filetype indent on
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+"Doxygen
+map<F2> :Dox<cr>
