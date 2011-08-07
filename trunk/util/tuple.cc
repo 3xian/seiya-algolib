@@ -1,6 +1,5 @@
 template<typename T, int N>
-class Tuple
-{
+class Tuple {
  public:
   T& operator [](int i) {
     return a[i];
@@ -13,4 +12,3 @@ class Tuple
  private:
   T a[N];
 }
-

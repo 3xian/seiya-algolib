@@ -9,8 +9,7 @@ inline int sgn(double x) {
   return x < -EPS ? -1 : x > EPS;
 }
 
-class Point
-{
+class Point {
  public:
   double x;
   double y;
