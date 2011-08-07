@@ -41,5 +41,5 @@ template <typename T> void usort(vector<T>& a) { sort(a.begin(), a.end()); a.era
 template <typename A, typename B> B conv(const A& i) { stringstream s; s << i; B o; s >> o; return o; }
 
 int main() {
-    return 0;
+  return 0;
 }
