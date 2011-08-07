@@ -1,5 +1,4 @@
-class Circle
-{
+class Circle {
  public:
   Point o;
   double r;
