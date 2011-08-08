@@ -6,8 +6,11 @@
  * @date 2011-08-08
  */
 
+typedef int flow_t;
+
 struct Edge {
-  int v, c, f;
+  flow_t c, f;
+  int v;
   Edge* next;
 };
 
@@ -16,7 +19,7 @@ Edge* head[N];
 Edge* ep;
 vector<int> d;
 
-inline void new_edge(int u, int v, int c) {
+inline void new_edge(int u, int v, flow_t c) {
   ep->v=v, ep->c=c, ep->f=0, ep->next=head[u]; head[u]=ep++;
   ep->v=u, ep->c=0, ep->f=0, ep->next=head[v]; head[v]=ep++; // directed
 }
@@ -33,7 +36,7 @@ void init(int n) {
   d.resize(n);
 }
 
-bool bfs(int n, int source, int t) {
+bool bfs(int source, int sink) {
   fill(d.begin(), d.end(), -1);
   d[source] = 0;
   deque<int> q;
@@ -47,12 +50,12 @@ bool bfs(int n, int source, int t) {
       }
     }
   }
-  return d[t] != -1;
+  return d[sink] != -1;
 }
 
-int find(int u, int t, int in) {
+flow_t find(int u, int t, flow_t in) {
   if (u == t) return in;
-  int out = 0, m;
+  flow_t out = 0, m;
   for (Edge* p = head[u]; p != NULL && out < in; p = p->next) {
     if (p->c > p->f && d[p->v] == d[u] + 1 && (m = find(p->v, t, min(p->c - p->f, in - out))) > 0) {
       p->f += m;
@@ -64,8 +67,8 @@ int find(int u, int t, int in) {
   return out;
 }
 
-int dinic(int n, int s, int t) {
-  int flow = 0;
-  while (bfs(n, s, t)) while (int m = find(s, t, INF)) flow += m;
+flow_t dinic(int n, int s, int t) {
+  flow_t flow = 0;
+  while (bfs(s, t)) while (flow_t m = find(s, t, INF)) flow += m;
   return flow;
 }
