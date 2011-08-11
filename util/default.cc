@@ -22,9 +22,9 @@
 #define pv(i,n) ((i)>0?(i)-1:(n)-1)
 #define nx(i,n) ((i)+1<(n)?(i)+1:0)
 #ifdef LOCAL
-#define ss(x)   cout<<">> "#x" = "<<(x)<<"\n"
+#define LOG(x)  cout<<">> "#x" = "<<(x)<<"\n"
 #else
-#define ss(x) 
+#define LOG(x) 
 #endif
 
 using namespace std;
