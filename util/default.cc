@@ -1,6 +1,3 @@
-#include <cctype>
-#include <cmath>
-#include <cstdio>
 #include <cstring>
 #include <algorithm>
 #include <bitset>
@@ -14,19 +11,16 @@
 #include <set>
 #include <sstream>
 #include <stack>
-#include <string>
 #include <vector>
-
-#define pv(i,n) ((i)>0?(i)-1:(n)-1)
-#define nx(i,n) ((i)+1<(n)?(i)+1:0)
-#ifdef LOCAL
-#define LOG(x)  cout<<">> "#x" = "<<(x)<<"\n"
+#define PREV(i, n) ((i)>0?(i)-1:(n)-1)
+#define NEXT(i, n) ((i)+1<(n)?(i)+1:0)
+#ifdef  LOCAL
+#define DEBUG(x) cout<<">> "#x" = "<<(x)<<"\n"
 #else
-#define LOG(x) 
+#define DEBUG(x) 
 #endif
-
 using namespace std;
-typedef long long ll;
+typedef int64_t ll;
 typedef pair<int, int> pii;
 template <typename T> T sqr(const T& x) { return x * x; }
 template <typename T> void mil(T& a, const T& b) { if (a > b) a = b; }
