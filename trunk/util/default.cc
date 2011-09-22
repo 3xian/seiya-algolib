@@ -15,9 +15,9 @@
 #define PREV(i, n) ((i)>0?(i)-1:(n)-1)
 #define NEXT(i, n) ((i)+1<(n)?(i)+1:0)
 #ifdef  LOCAL
-#define DB(x) cout<<">> "#x" = "<<(x)<<"\n"
+#define debug(x) cout<<"  ... "#x" : "<<(x)<<"\n"
 #else
-#define DB(x) 
+#define debug(x) 
 #endif
 using namespace std;
 typedef int64_t ll;
