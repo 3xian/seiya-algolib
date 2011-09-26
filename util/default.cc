@@ -1,17 +1,14 @@
 #include <cstring>
 #include <algorithm>
 #include <bitset>
-#include <deque>
 #include <iostream>
 #include <iterator>
 #include <list>
 #include <map>
-#include <numeric>
 #include <queue>
 #include <set>
 #include <sstream>
 #include <stack>
-#include <vector>
 #ifndef ONLINE_JUDGE
 #define debug(x) cout<<"  ... "#x" : "<<(x)<<"\n"
 #else
