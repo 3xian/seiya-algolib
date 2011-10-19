@@ -30,4 +30,3 @@ template<typename A, typename B> B conv(const A& i) {
 int main() {
   return 0;
 }
-
