@@ -24,8 +24,7 @@ template<typename T> void mil(T& a, const T& b) { if (a > b) a = b; }
 template<typename T> void mal(T& a, const T& b) { if (a < b) a = b; }
 template<typename T> void usort(vector<T>& a) {
   sort(a.begin(), a.end()); a.erase(unique(a.begin(), a.end()), a.end()); }
-template<typename A, typename B> B conv(const A& i) {
-  stringstream s; B o; s << i, s >> o; return o; }
+template<typename A, typename B> B conv(const A& i) { stringstream s; B o; s << i, s >> o; return o; }
 
 int main() {
   return 0;
