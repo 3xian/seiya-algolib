@@ -1,5 +1,5 @@
 class ExtendedKmp {
-public:
+ public:
   void pref(const char* a, int len_a, int* pre_a) {
     if (len_a <= 0) return;
     pre_a[0] = len_a;
