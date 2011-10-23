@@ -1,4 +1,4 @@
-// s[0..p[i]] = s[i-p[i]..i]
+// s[0..p[i]) = s(i-p[i]..i]
 vector<int> prefix_function(const string& s) {
   vector<int> p(s.length());
   if (!s.empty()) {
