@@ -5,128 +5,56 @@ const double PI = acos(-1.0);
 class Point;
 class Circle;
 
-inline int sgn(double x) {
-  return x < -EPS ? -1 : x > EPS;
-}
+inline int sgn(double x) { return x<-EPS ? -1 : x>EPS; }
 
-class Point {
- public:
-  double x;
-  double y;
-
+struct Point {
+  double x, y;
   Point() {}
-
-  Point(const double& x, const double& y)
-    : x(x), y(y) {}
-
-  template<typename A, typename B> Point(const pair<A, B>& a)
-    : x(a.first), y(a.second) {}
-
-  bool operator <(const Point& a) const {
-    return x + EPS < a.x || x < a.x + EPS && y + EPS < a.y;
-  }
-
-  bool operator ==(const Point& a) const {
-    return !(*this < a || a < *this);
-  }
-
-  Point operator +(const Point& a) const {
-    return Point(x + a.x, y + a.y);
-  }
-
-  Point operator -(const Point& a) const {
-    return Point(x - a.x, y - a.y);
-  }
-
-  Point operator *(double k) const {
-    return Point(x * k, y * k);
-  }
-
-  Point operator /(double k) const {
-    return Point(x / k, y / k);
-  }
-
-  double operator *(const Point& a) const {
-    return x * a.x + y * a.y;
-  }
-
-  double operator %(const Point& a) const {
-    return x * a.y - y * a.x;
-  }
-
-  double norm() const {
-    return x * x + y * y;
-  }
-
-  double len() const {
-    return sqrt(norm());
-  }
-
-  Point scale(double k) const {
-    return (*this) * (k / len());
-  }
-
-  Point turn_left() const {
-    return Point(-y, x);
-  }
-
-  Point turn_right() const {
-    return Point(y, -x);
-  }
-
-  bool scan();
-
-  void print() const;
-
-  /// rotate ccw
-  Point rotate(double arc) const;
-
-  /// check if inside circle
-  bool inside(const Circle& c, bool border = true) const;
+  Point(const double & x, const double & y) : x(x), y(y) {}
+  bool operator ==(const Point& e) const { return sgn(x-e.x)==0 && sgn(y-e.y)==0; }
+  bool operator <(const Point& e) const { return x+EPS<e.x || x<e.x+EPS && y+EPS<e.y; }
+  Point operator +(const Point& e) const { return Point(x+e.x, y+e.y); }
+  Point operator -(const Point& e) const { return Point(x-e.x, y-e.y); }
+  Point operator *(double k) const { return Point(x*k, y*k); }
+  Point operator /(double k) const { return Point(x/k, y/k); }
+  double norm() const { return x*x + y*y; }
+  double len() const { return sqrt(norm()); }
+  Point to(double k) const { return (*this) * (k / len()); }
+  Point turn_left() { return Point(-y, x); }
+  Point turn_right() { return Point(y, -x); }
+  bool read() { return scanf("%lf%lf", &x, &y) != EOF; }
+  void print() const { printf("%.2f %.2f\n", x, y); }
 };
 
-bool Point::scan() {
-  return scanf("%lf%lf", &x, &y) == 2;
+double cross(Point a, Point b) {
+  return a.x * b.y - b.x * a.y;
 }
-
-void Point::print() const {
-  printf("%.2f %.2f\n", x, y);
+double dot(Point a, Point b) {
+  return a.x * b.x + a.y * b.y;
 }
-
-Point Point::rotate(double arc) const {
-  double co = cos(arc);
-  double si = sin(arc);
-  return Point(x * co - y * si, x * si + y * co);
+bool inter(Point a, Point b, Point c, Point d, Point& x) {
+  double u=cross(b-a,c-a), v=cross(b-a,d-a); if (sgn(v-u)==0) return false;
+  x = Point(c.x*v-d.x*u, c.y*v-d.y*u) / (v-u); return true;
 }
-
-double dis(const Point &p, const Point &a, const Point &b) {
-  return fabs((p - b) % (a - b)) / (a - b).len();
+Point foot(Point p, Point a, Point b) {
+  Point t; inter(p,p+(b-a).turn_left(),a,b,t); return t;
 }
-
-Point intersect(const Point &a, const Point &b, const Point &c, const Point &d) {
-  return a + (b - a) * ((c - a) % (d - c) / ((b - a) % (d - c)));
+bool onseg(Point p, Point a, Point b, bool end=true) {
+  return sgn(cross(p-a,p-b))==0 && dot(a-p,b-p)<(end?EPS:-EPS);
 }
-
-void perpendicular_bisector(const Point &p1, const Point &p2, Point &q1, Point &q2) {
-  q1 = (p1 + p2) / 2.0;
-  q2 = q1 + (p2 - p1).turn_left();
+double p2l(Point p, Point a, Point b) {
+  return fabs(cross(p-b,a-b)) / (a-b).len();
 }
-
-bool onsegment(const Point &p, const Point &s1, const Point &s2, bool endpoint = true) {
-  return sgn((p - s2) % (s1 - s2)) == 0 && (s1 - p) * (s2 - p) < (endpoint ? EPS : -EPS);
+double p2s(Point p, Point a, Point b) {
+  double d = min((p-a).len(), (p-b).len());
+  if (onseg(foot(p,a,b),a,b)) mil(d, p2l(p,a,b));
+  return d;
 }
-
-bool opposide(const Point &a1, const Point &a2, const Point &b1, const Point &b2) {
-  return sgn((a1 - b2) % (b1 - b2)) * sgn((a2 - b2) % (b1 - b2)) < 0;
+double s2s(Point p1, Point p2, Point q1, Point q2) {
+  return min(min(p2s(p1,q1,q2), p2s(p2,q1,q2)),
+             min(p2s(q1,p1,p2), p2s(q2,p1,p2)));
 }
-
-bool incircle(const Point &p, const Point &a, const Point &b, const Point &c) { // ccw
-  return (c - b) % (p - b) * a.norm() - (c - a) % (p - a) * b.norm()
-    + (b - a) % (p - a) * c.norm() - (b - a) % (c - a) * p.norm() > EPS;
-}
-
-bool segment_intersect(const Point &a1, const Point &a2, const Point &b1, const Point &b2, bool endpoint = true) {
-  if (opposide(a1, a2, b1, b2) && opposide(b1, b2, a1, a2)) return true;
-  return endpoint && (onsegment(a1, b1, b2) || onsegment(a2, b1, b2)
-      || onsegment(b1, a1, a2) || onsegment(b2, a1, a2));
+bool incircle(Point p, Point a, Point b, Point c) { // ccw
+  return cross(c-b,p-b)*a.norm() - cross(c-a,p-a)*b.norm()
+      + cross(b-a,p-a)*c.norm() - cross(b-a,c-a)*p.norm() > EPS;
 }
