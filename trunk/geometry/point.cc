@@ -10,7 +10,7 @@ inline int sgn(double x) { return x<-EPS ? -1 : x>EPS; }
 struct Point {
   double x, y;
   Point() {}
-  Point(const double & x, const double & y) : x(x), y(y) {}
+  Point(double x, double y) : x(x), y(y) {}
   bool operator ==(const Point& e) const { return sgn(x-e.x)==0 && sgn(y-e.y)==0; }
   bool operator <(const Point& e) const { return x+EPS<e.x || x<e.x+EPS && y+EPS<e.y; }
   Point operator +(const Point& e) const { return Point(x+e.x, y+e.y); }
