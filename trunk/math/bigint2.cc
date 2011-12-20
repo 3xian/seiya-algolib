@@ -6,6 +6,7 @@ public:
     bigint() :
         sign(1) {
     }
+
     bigint(long long v) {
         sign = 1;
         if (v < 0)
@@ -13,8 +14,13 @@ public:
         for (; v > 0; v = v / base)
             a.push_back(v % base);
     }
-    bigint(const string& s) {
-        read(s);
+
+    explicit bigint(const char* str) {
+        assign(str);
+    }
+
+    bigint(const string& str) {
+        assign(str.c_str());
     }
 
     void operator = (const bigint& v) {
@@ -186,8 +192,12 @@ public:
     }
 
     void trim() {
-        while (!a.empty() and a.back() == 0) a.pop_back();
-        if (a.empty()) sign = 1;
+        while (!a.empty() and a.back() == 0) {
+            a.pop_back();
+        }
+        if (a.empty()) {
+            sign = 1;
+        }
     }
 
     bigint operator - () const {
@@ -209,39 +219,54 @@ public:
         return res * sign;
     }
 
-    void read(const string &s) {
+    void assign(const char* s) {
         sign = 1;
         a.clear();
         int pos = 0;
-        while (pos < (int) s.size() && (s[pos] == '-' || s[pos] == '+')) {
-            if (s[pos] == '-')
-                sign = -sign;
-            ++pos;
+        int length = strlen(s);
+        while (pos < length and (s[pos] == '-' or s[pos] == '+')) {
+            if (s[pos] == '-') {
+                sign *= -1;
+            }
+            pos++;
         }
-        for (int i = s.size() - 1; i >= pos; i -= base_digits) {
+
+        for (int i = length - 1; i >= pos; i -= base_digits) {
             int x = 0;
-            for (int j = max(pos, i - base_digits + 1); j <= i; j++)
+            for (int j = max(pos, i - base_digits + 1); j <= i; j++) {
                 x = x * 10 + s[j] - '0';
+            }
             a.push_back(x);
         }
         trim();
     }
 
-    friend istream& operator >> (istream& stream, bigint &v) {
+    friend istream& operator >> (istream& stream, bigint& v) {
         string s;
         stream >> s;
-        v.read(s);
+        v = bigint(s);
         return stream;
     }
 
-    friend ostream& operator << (ostream &stream, const bigint &v) {
+    friend ostream& operator << (ostream& stream, const bigint& v) {
         if (v.sign == -1) {
             stream << '-';
         }
         stream << (v.a.empty() ? 0 : v.a.back());
-        for (int i = (int) v.a.size() - 2; i >= 0; --i)
+        for (int i = (int) v.a.size() - 2; i >= 0; --i) {
             stream << setw(base_digits) << setfill('0') << v.a[i];
+        }
         return stream;
+    }
+
+    void print() const {
+        if (sign == -1) {
+            putchar('-');
+        }
+        printf("%d", a.empty() ? 0 : a.back());
+        for (int i = (int) a.size() - 2; i >= 0; --i) {
+            printf("%09d", a[i]);
+        }
     }
 
     static vector<int> convert_base(const vector<int> &a, int old_digits,
@@ -308,7 +333,7 @@ public:
         return res;
     }
 
-    bigint operator*(const bigint &v) const {
+    bigint operator * (const bigint &v) const {
         vector<int> a6 = convert_base(this->a, base_digits, 6);
         vector<int> b6 = convert_base(v.a, base_digits, 6);
         vll a(a6.begin(), a6.end());
