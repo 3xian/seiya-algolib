@@ -1,4 +1,4 @@
-vector<int> get_fractors(int x) {
+vector<int> factorization(int x) {
     vector<int> ret;
     for (int i = 2; i * i <= x; i++) {
         while (x % i == 0) {
