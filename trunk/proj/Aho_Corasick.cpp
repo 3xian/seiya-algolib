@@ -34,7 +34,7 @@ public:
             }
             off = _node[off].child[charactor];
         }
-        _node.back().id = id;
+        _node[off].id = id;
     }
     
 	void build_automata() {
