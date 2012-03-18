@@ -91,22 +91,24 @@ public:
         }
         bubble(q, NULL);
     }
-    bool erase(int x) {
+    bool set(int k, const T& value) {
+        Node* p = select(k);
+        p->_value = value;
+        bubble(p, NULL);
+    }
+    void erase(int x) {
         Node* q = select(x);
-        if (q == NULL) {
-            return false;
-        }
         while (q->_child[0] != NULL) {
             rotate(q->_child[0]);
         }
-        link(q->_father, q->_child[1], q->_direction);
         if (_root == q) {
             _root = q->_child[1];
+            _root->father = NULL;
         } else {
+            link(q->_father, q->_child[1], q->_direction);
             bubble(q->_father, NULL);
         }
         delete q;
-        return true;
     }
     void display() {
         display(_root);
@@ -176,10 +178,7 @@ int main() {
             int x, y;
             scanf("\n%c%d%d", &c, &x, &y);
             if (c == 'U') {
-                BinaryTree<int>::Node* p = tree.select(x - 1);
-                tree.bubble(p, NULL);
-                p->_value = y;
-                p->update();
+                tree.set(x - 1, y);
             } else {
                 BinaryTree<int>::Node* s = tree.get_segment(x - 1, y);
                 printf("%d\n", s->_max_value);
@@ -188,4 +187,3 @@ int main() {
     }
     return 0;
 }
-
