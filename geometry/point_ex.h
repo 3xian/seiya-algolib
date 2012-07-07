@@ -6,6 +6,10 @@ inline double cross_prod(const Point& a, const Point& b, const Point& o) {
   return cross_prod(a - o, b - o);
 }
 
+inline double cross_prod(const Segment& seg, const Point& p) {
+  return cross_prod(seg.second - seg.first, p - seg.first);
+}
+
 inline double dot_prod(const Point& a, const Point& b) {
   return a.x * b.x + a.y * b.y;
 }

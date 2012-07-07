@@ -3,7 +3,7 @@
 #include <limits>
 #include <vector>
 
-const double EPS = 1E-5;
+const double EPS = 1E-7;
 const double INF = std::numeric_limits<double>::max();
 
 inline int sign(double x) {
