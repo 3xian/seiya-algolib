@@ -1,3 +1,17 @@
+/**
+ * @brief 多边形有向面积
+ * @note  不加fabs逆时针面积为正
+ */
+double polygon_area(const Points& ps) {
+  double sum = 0.0;
+  for (size_t i = 0; i < ps.size(); i++) {
+    sum += cross_prod(ps[i], ps[next(ps, i)]);
+  }
+  return fabs(sum * 0.5);
+}
+
+// ---------------------------------------------------------------------
+
 Point axes;
 
 inline int dir(const Points& p, int i) {
