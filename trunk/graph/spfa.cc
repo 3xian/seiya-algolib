@@ -4,7 +4,7 @@ public:
     SPFA(int n) :
         edges_(std::vector<Edges>(n)),
         distance_(std::vector<WeightType>(n)),
-        visited_(std::vector<bool>(n)),
+        visit_times_(std::vector<int>(n)),
         in_queue_(std::vector<bool>(n)) { }
 
     void add_edge(int u, int v, const WeightType& weight) {
@@ -16,8 +16,9 @@ public:
         candi_queue.push_back(source);
 
         distance_[source] = 0;
-        visited_[source] = true;
+        visit_times_[source] = 1;
         in_queue_[source] = true;
+        int nodes_number = distance_.size();
 
         while (!candi_queue.empty()) {
             int u = candi_queue.front();
@@ -27,9 +28,12 @@ public:
                 int v = edges_[u][i].v;
                 WeightType alter = distance_[u] + edges_[u][i].weight;
 
-                if (!visited_[v] || alter < distance_[v]) {
-                    visited_[v] = true;
+                if (visit_times_[v] == 0 || alter < distance_[v]) {
+                    if (++visit_times_[v] >= nodes_number) {
+                        return false;
+                    }
                     distance_[v] = alter;
+
                     if (!in_queue_[v]) {
                         in_queue_[v] = true;
                         if (!candi_queue.empty() && distance_[v] < distance_[candi_queue.front()]) {
@@ -47,7 +51,7 @@ public:
     }
 
     bool can_arrive(int u) const {
-        return visited_[u];
+        return visit_times_[u] > 0;
     }
 
     WeightType get_distance(int u) const {
@@ -65,6 +69,6 @@ private:
 
     std::vector<Edges> edges_;
     std::vector<WeightType> distance_;
-    std::vector<bool> visited_;
+    std::vector<int> visit_times_;
     std::vector<bool> in_queue_;
 };
