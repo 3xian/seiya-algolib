@@ -2,7 +2,7 @@ class Fenwick {
 public:
     Fenwick(int n) : n_(n) {
         c_ = (int*) calloc(n + 1, sizeof(int));
-        d_ = 1 << (31 - __builtinc_lz(n));
+        d_ = 1 << (31 - __builtin_clz(n));
     }
 
     ~Fenwick() { free(c_); }
