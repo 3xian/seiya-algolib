@@ -14,7 +14,7 @@ inline double dot_prod(const Point& a, const Point& b) {
   return a.x * b.x + a.y * b.y;
 }
 
-double oppo_site(const Point& p1, const Point& p2, const Line& line) {
+bool oppo_site(const Point& p1, const Point& p2, const Line& line) {
   return sign(cross_prod(p1, line.first, line.second)) * sign(cross_prod(p2, line.first, line.second)) < 0;
 }
 
