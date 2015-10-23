@@ -1,7 +1,3 @@
-from collections import deque
-
-inf = float('inf')
-
 def add_edge(graph, u, v, cap):
     graph[u].setdefault(v, [0, 0])[1] += cap
     graph[v].setdefault(u, [0, 0])
@@ -9,8 +5,9 @@ def add_edge(graph, u, v, cap):
 def preflow_push(graph, source, sink):
     n = len(graph)
     e, h = [0] * n, [0] * n
-    e[source] = inf
+    e[source] = float('inf')
     h[source] = n
+    from collections import deque
     q = deque([source])
 
     def enqueue(u):
